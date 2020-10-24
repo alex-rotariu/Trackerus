@@ -2,23 +2,16 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
-import NavigationLink from "../components/NavigationLink";
-import Spacer from "../components/Spacer";
-
-const SplashScreen = ({ navigation }) => {
+const SearchScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Trackerus</Text>
+      <Text>Search</Text>
       <Button
         buttonStyle={{ width: 200 }}
-        title="SignIn"
+        title="View Results"
         type="outline"
-        onPress={() => navigation.navigate("SignIn")}
+        onPress={() => navigation.navigate("SearchView")}
       />
-      <Spacer>
-        <Text>Don't have an account?</Text>
-      </Spacer>
-      <NavigationLink text="Sign Up" routeName="SignUp" />
     </View>
   );
 };
@@ -32,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SplashScreen;
+export default SearchScreen;

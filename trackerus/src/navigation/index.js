@@ -5,7 +5,7 @@ import AppLoadingScreen from "../screens/AppLoadingScreen";
 import AppStack from "./AppNavigator";
 import AuthStack from "./AuthNavigator";
 
-export default function RootStackScreen({ isLoggedIn = false }) {
+export default function RootStackScreen({ isLoggedIn = true }) {
   const RootStack = createStackNavigator();
   return (
     <RootStack.Navigator>
