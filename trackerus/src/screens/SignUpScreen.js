@@ -1,20 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
+import { Text } from "react-native-elements";
+
+import Spacer from "../components/Spacer";
+import SignUpForm from "../components/SignUpForm";
 
 const SignUpScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Sign Up</Text>
+      <Spacer>
+        <Text h3>Sign up</Text>
+      </Spacer>
+      <SignUpForm />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     flex: 1,
-    justifyContent: "center",
-    marginBottom: 50
+    alignItems: "center",
+    marginTop: Dimensions.get("window").width * 0.1
   }
 });
 

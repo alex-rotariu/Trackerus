@@ -1,16 +1,22 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { connect } from "react-redux";
 
 import AppLoadingScreen from "../screens/AppLoadingScreen";
 import AppStack from "./AppNavigator";
 import AuthStack from "./AuthNavigator";
 
-export default function RootStackScreen({ isLoggedIn = true }) {
-  const RootStack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+function RootStackScreen({ isLoggedIn }) {
   return (
     <RootStack.Navigator>
       {isLoggedIn ? (
-        <RootStack.Screen name="Authenticated" component={AppStack} />
+        <RootStack.Screen
+          options={{ headerShown: false }}
+          name="Authenticated"
+          component={AppStack}
+        />
       ) : (
         <RootStack.Screen
           options={{ headerShown: false }}
@@ -21,3 +27,9 @@ export default function RootStackScreen({ isLoggedIn = true }) {
     </RootStack.Navigator>
   );
 }
+
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.user.token ? true : false };
+};
+
+export default connect(mapStateToProps, null)(RootStackScreen);

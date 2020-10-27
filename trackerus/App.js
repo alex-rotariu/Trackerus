@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import RootStackScreen from "./src/navigation";
+import { Provider } from "react-redux";
 
+import RootStackScreen from "./src/navigation";
 import { navigationRef, isReadyRef } from "./src/navigation/RootNavigation";
+import { store } from "./src/redux/store";
 
 export default function App() {
   useEffect(() => {
@@ -12,13 +14,15 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        isReadyRef.current = true;
-      }}
-    >
-      <RootStackScreen />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer
+        ref={navigationRef}
+        onReady={() => {
+          isReadyRef.current = true;
+        }}
+      >
+        <RootStackScreen />
+      </NavigationContainer>
+    </Provider>
   );
 }

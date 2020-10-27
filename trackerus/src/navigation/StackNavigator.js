@@ -5,8 +5,27 @@ import RecordCreate from "../screens/Record/RecordCreate";
 import RecordSave from "../screens/Record/RecordSave";
 import Search from "../screens/Search/SearchScreen";
 import SearchView from "../screens/Search/SearchView";
+import Profile from "../screens/ProfileScreen";
+import Home from "../screens/HomeScreen";
+import Feed from "../screens/FeedScreen";
 
 const Stack = createStackNavigator();
+
+const HomeStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+};
+
+const FeedStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Feed" component={Feed} />
+    </Stack.Navigator>
+  );
+};
 
 const RecordStackNavigator = () => {
   return (
@@ -26,4 +45,18 @@ const SearchStackNavigator = () => {
   );
 };
 
-export { RecordStackNavigator, SearchStackNavigator };
+const ProfileStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={Profile} />
+    </Stack.Navigator>
+  );
+};
+
+export {
+  HomeStackNavigator,
+  FeedStackNavigator,
+  RecordStackNavigator,
+  SearchStackNavigator,
+  ProfileStackNavigator
+};

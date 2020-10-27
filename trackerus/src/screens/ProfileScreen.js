@@ -1,10 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
+import { connect } from "react-redux";
 
-const ProfileScreen = () => {
+import { signout } from "../redux/actions/userActions";
+
+const ProfileScreen = ({ signout }) => {
   return (
     <View style={styles.container}>
       <Text>Profile</Text>
+      <Button
+        buttonStyle={{ width: 200 }}
+        title="Sign Out"
+        type="outline"
+        onPress={signout}
+      />
     </View>
   );
 };
@@ -18,4 +28,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProfileScreen;
+const mapStateToProps = (state) => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps, { signout })(ProfileScreen);

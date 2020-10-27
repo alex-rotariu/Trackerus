@@ -12,11 +12,15 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  fullName: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true
   },
-  birthdate: {
+  dateOfBirth: {
     type: Date,
     required: true
   },
@@ -77,4 +81,4 @@ userSchema.methods.comparePassword = function (candidatePassword) {
   });
 };
 
-mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);

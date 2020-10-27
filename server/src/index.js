@@ -19,9 +19,9 @@ mongoose.connect(mongoUri, {
 
 app.use(bodyParser.json());
 
-app.use("/auth/", authRoutes);
-app.use("/tracks/", trackRoutes);
-app.use("/follower/", followerRoutes);
+app.use("/auth", authRoutes);
+app.use("/tracks", trackRoutes);
+app.use("/follower", followerRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello");
