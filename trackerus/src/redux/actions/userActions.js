@@ -32,26 +32,35 @@ export const signup = ({
       password,
       confirmPassword
     });
+    console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNUP_SUCCESS, payload: response.data });
     navigate("Authenticated");
   } catch (err) {
-    dispatch({ type: USER_SIGNUP_FAIL });
+    dispatch({
+      type: USER_SIGNUP_FAIL,
+      payload: { errors: err.response.data.errors }
+    });
   }
 };
 
 export const signin = ({ username, password }) => async (dispatch) => {
+  let response;
   try {
     dispatch({ type: USER_SIGNIN_REQUEST });
-    const response = await api.post("/auth/signin", {
+    response = await api.post("/auth/signin", {
       username,
       password
     });
     await AsyncStorage.setItem("token", response.data.token);
+    console.log(response);
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: response.data });
     navigate("Authenticated");
   } catch (err) {
-    dispatch({ type: USER_SIGNIN_FAIL });
+    dispatch({
+      type: USER_SIGNIN_FAIL,
+      payload: { errors: err.response.data.errors }
+    });
   }
 };
 

@@ -23,10 +23,6 @@ app.use("/auth", authRoutes);
 app.use("/tracks", trackRoutes);
 app.use("/follower", followerRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
-
 mongoose.connection.on("connected", () => {
   console.log("Connected to mongo instance");
 });

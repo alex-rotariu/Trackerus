@@ -1,11 +1,15 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+const validate = require("../validators/validate");
+const {
+  userSignInRules,
+  userSignUpRules
+} = require("../validators/userValidator");
 const router = express.Router();
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", userSignUpRules(), validate, async (req, res) => {
   const { username, email, fullName, dateOfBirth, password } = req.body;
   try {
     const user = new User({
@@ -37,16 +41,10 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/signin", async (req, res) => {
+router.post("/signin", userSignInRules(), validate, async (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(422).send({ error: "Must provide email and password" });
-  }
 
   const user = await User.findOne({ username });
-  if (!user) {
-    return res.status(422).send({ error: "Email not found" });
-  }
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
@@ -60,7 +58,7 @@ router.post("/signin", async (req, res) => {
       }
     });
   } catch (err) {
-    return res.status(422).send({ error: "Invalid password or email" });
+    return res.status(422).send({ error: "Incorrect user or password" });
   }
 });
 

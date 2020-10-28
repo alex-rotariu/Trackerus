@@ -10,10 +10,9 @@ import {
 import { connect } from "react-redux";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
-import Constants from "expo-constants";
 
 import Spacer from "./Spacer";
-import signup from "../redux/actions/userActions";
+import { signup } from "../redux/actions/userActions";
 
 const SignUpForm = ({ signup }) => {
   const [show, setShow] = useState(false);
@@ -99,7 +98,15 @@ const SignUpForm = ({ signup }) => {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null} */}
       <Spacer>
-        <Button title="Sign Up!" onPress={() => signup(values)} />
+        <Button
+          title="Sign Up!"
+          onPress={() =>
+            signup({
+              ...values,
+              dateOfBirth: moment(values.dateOfBirth).format("DD-MM-YYYY")
+            })
+          }
+        />
       </Spacer>
     </ScrollView>
   );
