@@ -14,7 +14,10 @@ const SignInForm = ({ signin }) => {
 
   return (
     <>
-      <ScrollView style={{ width: Dimensions.get("window").width }}>
+      <ScrollView style={{ width: Dimensions.get("window").width * 0.7 }}>
+        <Spacer>
+          <Text style={styles.title}>Sign in</Text>
+        </Spacer>
         <Input
           autoCapitalize="none"
           autoCorrect={false}
@@ -42,6 +45,11 @@ const SignInForm = ({ signin }) => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    textAlign: "center"
+  },
   errorMessage: {
     fontSize: 16,
     color: "red",

@@ -1,17 +1,18 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import { Text } from "react-native-elements";
+import { Text, Button } from "react-native-elements";
 
 import Spacer from "../components/Spacer";
 import SignUpForm from "../components/SignUpForm";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign up</Text>
-      </Spacer>
       <SignUpForm />
+      <Spacer>
+        <Text h4>Already have an account?</Text>
+        <Button title="Sign In" onPress={() => navigation.navigate("SignIn")} />
+      </Spacer>
     </View>
   );
 };
@@ -19,8 +20,9 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    marginTop: Dimensions.get("window").width * 0.1
+    flexDirection: "column",
+    justifyContent: "center",
+    marginVertical: Dimensions.get("window").width * 0.1
   }
 });
 

@@ -9,15 +9,15 @@ const userSignInRules = () => {
       .not()
       .isEmpty()
       .trim()
-      .withMessage("Username must not be empty"),
-    body("username").custom(async (username) => {
-      const user = await User.findOne({ username });
-      if (!user) {
-        return Promise.reject("User does not exist");
-      } else {
-        return true;
-      }
-    }),
+      .withMessage("Username must not be empty")
+      .custom(async (username) => {
+        const user = await User.findOne({ username });
+        if (!user) {
+          return Promise.reject("User does not exist");
+        } else {
+          return true;
+        }
+      }),
     body("password").custom(
       async (
         password,
