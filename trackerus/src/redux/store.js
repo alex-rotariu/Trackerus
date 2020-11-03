@@ -6,7 +6,8 @@ import reducers from "./reducers";
 const composeEnhanvers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
-  user: { loading: false, user: null, token: "" }
+  user: { loading: false, user: null, token: "" },
+  location: { recording: true, locations: [], currentLocation: null, name: "" }
 };
 
 export const store = createStore(

@@ -1,28 +1,37 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import React, { useCallback } from "react";
+import { Text } from "react-native-elements";
+import { SafeAreaView, withNavigationFocus } from "react-navigation";
+import { connect } from "react-redux";
 
-const RecordCreate = ({ navigation }) => {
+import Map from "../../components/Map";
+import useLocation from "../../hooks/useLocation";
+import { addLocation } from "../../redux/actions/locationActions";
+import "../../_mockLocation";
+
+const TrackCreateScreen = ({ addLocation, recording, isFocused }) => {
+  const callback = useCallback(
+    (location) => {
+      addLocation(location, recording);
+    },
+    [recording]
+  );
+  const [error] = useLocation(isFocused || recording, callback);
   return (
-    <View style={styles.container}>
-      <Text>Record create</Text>
-      <Button
-        buttonStyle={{ width: 200 }}
-        title="Save"
-        type="outline"
-        onPress={() => navigation.navigate("RecordSave")}
-      />
-    </View>
+    <SafeAreaView forceInset={{ top: "always" }}>
+      <Text h3>Create a track</Text>
+      <Map />
+      {error ? <Text>Please enable location services</Text> : null}
+      {/* <TrackForm /> */}
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
-    marginBottom: 50
-  }
-});
+const mapStateToProps = (state) => {
+  return {
+    recording: state.location.recording
+  };
+};
 
-export default RecordCreate;
+export default connect(mapStateToProps, { addLocation })(
+  withNavigationFocus(TrackCreateScreen)
+);

@@ -1,4 +1,3 @@
-import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { navigate } from "../../navigation/RootNavigation";
 
@@ -32,7 +31,7 @@ export const signup = ({
       password,
       confirmPassword
     });
-    console.log(response);
+    // console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNUP_SUCCESS, payload: response.data });
     navigate("Authenticated");
