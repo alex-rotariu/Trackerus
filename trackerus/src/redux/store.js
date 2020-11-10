@@ -7,7 +7,12 @@ const composeEnhanvers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   user: { loading: false, user: null, token: "" },
-  location: { recording: true, locations: [], currentLocation: null, name: "" }
+  location: {
+    recording: true,
+    locations: [],
+    currentLocation: null,
+    trackName: ""
+  }
 };
 
 export const store = createStore(

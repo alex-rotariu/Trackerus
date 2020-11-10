@@ -13,7 +13,14 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        keyboardHidesTabBar: true,
+        style: {
+          position: "absolute"
+        }
+      }}
+    >
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Feed" component={FeedStackNavigator} />
       <Tab.Screen name="Record" component={RecordStackNavigator} />

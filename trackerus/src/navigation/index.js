@@ -29,7 +29,8 @@ function RootStackScreen({ isLoggedIn }) {
 }
 
 const mapStateToProps = (state) => {
-  // return { isLoggedIn: state.user.token ? true : false }; Commented for development
+  // return { isLoggedIn: state.user.token ? true : false };
+  // Commented for development
   // delete the next line to test auth
   return { isLoggedIn: state.user.token ? false : true };
 };

@@ -3,6 +3,8 @@ import * as Location from "expo-location";
 const tenMetersWithDegree = 0.0001;
 
 const getLocation = (increment) => {
+  let r1 = Math.floor(Math.random() * 5);
+  let r2 = Math.floor(Math.random() * 5);
   return {
     timestamp: 1000000,
     coords: {
@@ -11,8 +13,10 @@ const getLocation = (increment) => {
       accuracy: 5,
       altitudeAccuracy: 5,
       altitude: 5,
-      longitude: 21.90871 + increment * tenMetersWithDegree,
-      latitude: 45.675896 + increment * tenMetersWithDegree
+      longitude:
+        -122.084 + increment * tenMetersWithDegree * r1 * Math.pow(-1, r1),
+      latitude:
+        37.4219983 + increment * tenMetersWithDegree * r2 * Math.pow(-1, r2)
     }
   };
 };

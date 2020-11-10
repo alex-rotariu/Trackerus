@@ -4,12 +4,12 @@ import { ActivityIndicator, StyleSheet } from "react-native";
 import MapView, { Polyline, Circle } from "react-native-maps";
 
 const Map = ({ currentLocation, locations }) => {
-  console.log(currentLocation);
   if (!currentLocation)
     return <ActivityIndicator size="large" style={{ marginTop: 200 }} />;
 
   return (
     <MapView
+      loadingEnabled
       style={styles.map}
       initialRegion={{
         ...currentLocation.coords,
