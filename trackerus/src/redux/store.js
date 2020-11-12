@@ -8,7 +8,7 @@ const composeEnhanvers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {
   user: { loading: false, user: null, token: "" },
   location: {
-    recording: true,
+    recording: false,
     locations: [],
     currentLocation: null,
     trackName: ""

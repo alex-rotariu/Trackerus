@@ -2,7 +2,14 @@ import React, { useCallback } from "react";
 import { Text } from "react-native-elements";
 import { withNavigationFocus } from "react-navigation";
 import { connect } from "react-redux";
-import { KeyboardAvoidingView, StyleSheet, SafeAreaView } from "react-native";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  View,
+  Dimensions
+} from "react-native";
 
 import Map from "../../components/Map";
 import useLocation from "../../hooks/useLocation";
@@ -20,22 +27,35 @@ const TrackCreateScreen = ({ addLocation, recording, isFocused }) => {
   );
   const [error] = useLocation(isFocused || recording, callback);
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "position"}
-      style={{ flex: 1 }}
-    >
-      <SafeAreaView forceInset={{ top: "always" }}>
-        <Text h3>Create a track</Text>
+    <View style={styles.wrapper}>
+      <ScrollView style={{ width: Dimensions.get("window").width * 0.9 }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "position"}
+          style={{ flex: 1 }}
+        >
+          <SafeAreaView forceInset={{ top: "always" }}>
+            <Text h3>Create a track</Text>
 
-        <Map />
-        {error ? <Text>Please enable location services</Text> : null}
-        <TrackForm />
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+            <Map />
+            {error ? <Text>Please enable location services</Text> : null}
+            <TrackForm />
+          </SafeAreaView>
+        </KeyboardAvoidingView>
+      </ScrollView>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  wrapper: {
+    alignContent: "center",
+    alignSelf: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    borderRadius: 20,
+    margin: 20,
+    alignItems: "center"
+  }
+});
 
 const mapStateToProps = (state) => {
   return {

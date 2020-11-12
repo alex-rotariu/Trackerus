@@ -13,8 +13,8 @@ const Map = ({ currentLocation, locations }) => {
       style={styles.map}
       initialRegion={{
         ...currentLocation.coords,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02
       }}
     >
       <Circle

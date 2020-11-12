@@ -3,7 +3,9 @@ import {
   ADD_LOCATION,
   START_RECORDING,
   STOP_RECORDING,
-  CHANGE_NAME
+  CHANGE_NAME,
+  DISCARD_RECORDING,
+  CONFIRM_TRACK
 } from "../types";
 
 export const addLocation = (location, recording) => (dispatch) => {
@@ -30,4 +32,12 @@ export const stopRecording = () => {
 
 export const reset = () => {
   return { type: RESET };
+};
+
+export const confirmTrack = () => {
+  return { type: CONFIRM_TRACK };
+};
+
+export const discardTrack = () => {
+  return { type: DISCARD_RECORDING };
 };

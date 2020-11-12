@@ -30,7 +30,7 @@ const SignUpForm = ({ signup }) => {
       <ScrollView
         style={{
           width: Dimensions.get("window").width * 0.7,
-          height: Dimensions.get("window").width * 1
+          height: Dimensions.get("window").height * 1
         }}
       >
         <Spacer>

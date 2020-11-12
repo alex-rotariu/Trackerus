@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import {
   HomeStackNavigator,
@@ -14,6 +15,30 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          switch (route.name) {
+            case "Home":
+              iconName = "home";
+              break;
+            case "Feed":
+              iconName = "newspaper";
+              break;
+            case "Record":
+              iconName = "map-marker";
+              break;
+            case "Search":
+              iconName = "magnify";
+              break;
+            case "Profile":
+              iconName = "account";
+              break;
+          }
+          if (iconName)
+            return <Icon name={iconName} size={size} color={color} />;
+        }
+      })}
       tabBarOptions={{
         keyboardHidesTabBar: true,
         style: {

@@ -16,3 +16,5 @@ export const CHANGE_NAME = "CHANGE_NAME";
 export const START_RECORDING = "START_RECORDING";
 export const STOP_RECORDING = "STOP_RECORDING";
 export const RESET = "RESET";
+export const DISCARD_RECORDING = "DISCARD_RECORDING";
+export const CONFIRM_TRACK = "CONFIRM_TRACK";
