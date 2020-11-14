@@ -1,6 +1,5 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Text } from "react-native-elements";
-import { withNavigationFocus } from "react-navigation";
 import { connect } from "react-redux";
 import {
   KeyboardAvoidingView,
@@ -17,7 +16,14 @@ import { addLocation } from "../../redux/actions/locationActions";
 import "../../_mockLocation";
 import TrackForm from "../../components/TrackForm";
 
-const TrackCreateScreen = ({ addLocation, recording, isFocused }) => {
+const TrackCreateScreen = ({ addLocation, recording, navigation }) => {
+  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      setIsFocused(!isFocused);
+    });
+    return unsubscribe;
+  }, [navigation]);
   const callback = useCallback(
     (location) => {
       // console.log(location);
@@ -25,6 +31,7 @@ const TrackCreateScreen = ({ addLocation, recording, isFocused }) => {
     },
     [recording]
   );
+
   const [error] = useLocation(isFocused || recording, callback);
   return (
     <View style={styles.wrapper}>
@@ -63,6 +70,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addLocation })(
-  withNavigationFocus(TrackCreateScreen)
-);
+export default connect(mapStateToProps, { addLocation })(TrackCreateScreen);

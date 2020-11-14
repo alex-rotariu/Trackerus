@@ -7,6 +7,7 @@ import {
   DISCARD_RECORDING,
   CONFIRM_TRACK
 } from "../types";
+import { navigate } from "../../navigation/RootNavigation";
 
 export const addLocation = (location, recording) => (dispatch) => {
   dispatch({ type: ADD_CURRENT_LOCATION, payload: location });
@@ -35,6 +36,7 @@ export const reset = () => {
 };
 
 export const confirmTrack = () => {
+  navigate("RecordSave");
   return { type: CONFIRM_TRACK };
 };
 
