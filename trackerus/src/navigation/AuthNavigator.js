@@ -1,9 +1,9 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { createStackNavigator, TransitionSpecs } from "@react-navigation/stack";
-import SplashScreen from "../screens/SplashScreen";
-import SignUpScreen from "../screens/SignUpScreen";
-import SignInScreen from "../screens/SignInScreen";
+import Splash from "../screens/SplashScreen";
+import SignUp from "../screens/SignUpScreen";
+import SignIn from "../screens/SignInScreen";
 
 import image from "../../assets/frontpage_background.jpg";
 
@@ -63,17 +63,17 @@ const AuthStack = () => {
           <Authenticate.Screen
             name="Splash"
             options={CardOptions}
-            component={SplashScreen}
+            component={Splash}
           />
           <Authenticate.Screen
             name="SignUp"
             options={CardOptions}
-            component={SignUpScreen}
+            component={SignUp}
           />
           <Authenticate.Screen
             name="SignIn"
             options={CardOptions}
-            component={SignInScreen}
+            component={SignIn}
           />
         </Authenticate.Navigator>
       </ImageBackground>

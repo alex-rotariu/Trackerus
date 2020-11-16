@@ -14,24 +14,28 @@ import Map from "../../components/Map";
 import useLocation from "../../hooks/useLocation";
 import { addLocation } from "../../redux/actions/locationActions";
 import "../../_mockLocation";
-import TrackForm from "../../components/TrackForm";
+import RecordCreateForm from "../../components/RecordCreateForm";
 
-const TrackCreateScreen = ({ addLocation, recording, navigation }) => {
+const RecordCreateScreen = ({ addLocation, recording, navigation }) => {
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      setIsFocused(!isFocused);
+    const unsubscribe1 = navigation.addListener("focus", () => {
+      setIsFocused(true);
     });
-    return unsubscribe;
-  }, [navigation]);
+    const unsubscribe2 = navigation.addListener("blur", () => {
+      setIsFocused(false);
+    });
+    return function cleanup() {
+      unsubscribe1();
+      unsubscribe2();
+    };
+  }, []);
   const callback = useCallback(
     (location) => {
-      // console.log(location);
       addLocation(location, recording);
     },
-    [recording]
+    [recording, isFocused]
   );
-
   const [error] = useLocation(isFocused || recording, callback);
   return (
     <View style={styles.wrapper}>
@@ -45,7 +49,7 @@ const TrackCreateScreen = ({ addLocation, recording, navigation }) => {
 
             <Map />
             {error ? <Text>Please enable location services</Text> : null}
-            <TrackForm />
+            <RecordCreateForm />
           </SafeAreaView>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -70,4 +74,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addLocation })(TrackCreateScreen);
+export default connect(mapStateToProps, { addLocation })(RecordCreateScreen);

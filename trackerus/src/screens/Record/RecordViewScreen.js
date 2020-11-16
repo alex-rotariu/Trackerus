@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
-const RecordView = ({ navigation }) => {
+const RecordViewScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Record view</Text>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecordView;
+export default RecordViewScreen;

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Input, Button } from "react-native-elements";
 import { Dimensions, StyleSheet, View } from "react-native";
 
 import Spacer from "./Spacer";
+import TrackCreateModal from "./RecordCreateModal.js";
 import {
   changeName,
   startRecording,
@@ -12,7 +13,7 @@ import {
   discardTrack
 } from "../redux/actions/locationActions";
 
-const TrackForm = ({
+const RecordCreateForm = ({
   changeName,
   startRecording,
   stopRecording,
@@ -20,8 +21,26 @@ const TrackForm = ({
   discardTrack,
   state: { trackName, recording, locations }
 }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [errors, setErrors] = useState("");
+
+  const saveTrack = () => {
+    if (trackName === "" || locations.length === 0) {
+      setErrors("Please provide a title and locations");
+      setModalVisible(true);
+    } else {
+      confirmTrack();
+    }
+  };
+
   return (
     <View style={styles.body}>
+      <TrackCreateModal
+        errors={errors}
+        setErrors={setErrors}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
       <Spacer>
         <Input
           style={styles.input}
@@ -43,7 +62,7 @@ const TrackForm = ({
             <Button
               buttonStyle={styles.saveButton}
               title="Save recording"
-              onPress={confirmTrack}
+              onPress={saveTrack}
             />
           </Spacer>
           <Spacer>
@@ -55,16 +74,18 @@ const TrackForm = ({
           </Spacer>
         </>
       ) : null}
-      <Spacer>
-        {recording ? (
+
+      {recording ? (
+        <Spacer>
           <Button title="Stop recording" onPress={stopRecording} />
-        ) : null}
-      </Spacer>
-      <Spacer>
-        {!recording && locations.length === 0 ? (
+        </Spacer>
+      ) : null}
+
+      {!recording && locations.length === 0 ? (
+        <Spacer>
           <Button title="Start Recording" onPress={startRecording} />
-        ) : null}
-      </Spacer>
+        </Spacer>
+      ) : null}
     </View>
   );
 };
@@ -99,4 +120,4 @@ export default connect(mapStateToProps, {
   stopRecording,
   confirmTrack,
   discardTrack
-})(TrackForm);
+})(RecordCreateForm);

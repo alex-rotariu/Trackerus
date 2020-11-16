@@ -5,7 +5,8 @@ import {
   STOP_RECORDING,
   CHANGE_NAME,
   DISCARD_RECORDING,
-  CONFIRM_TRACK
+  CONFIRM_TRACK,
+  SAVE_TRACK_SUCCESS
 } from "../types";
 import { navigate } from "../../navigation/RootNavigation";
 
@@ -38,6 +39,10 @@ export const reset = () => {
 export const confirmTrack = () => {
   navigate("RecordSave");
   return { type: CONFIRM_TRACK };
+};
+
+export const saveTrack = () => {
+  return { type: SAVE_TRACK_SUCCESS };
 };
 
 export const discardTrack = () => {

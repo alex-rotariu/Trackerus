@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import RecordCreate from "../screens/Record/RecordCreate";
-import RecordSave from "../screens/Record/RecordSave";
+import RecordCreate from "../screens/Record/RecordCreateScreen";
+import RecordSave from "../screens/Record/RecordSaveScreen";
 import Search from "../screens/Search/SearchScreen";
 import SearchView from "../screens/Search/SearchView";
 import Profile from "../screens/ProfileScreen";

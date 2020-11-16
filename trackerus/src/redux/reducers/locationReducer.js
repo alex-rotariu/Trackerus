@@ -4,6 +4,7 @@ import {
   CHANGE_NAME,
   CONFIRM_TRACK,
   DISCARD_RECORDING,
+  SAVE_TRACK_SUCCESS,
   START_RECORDING,
   STOP_RECORDING
 } from "../types";
@@ -29,6 +30,9 @@ export default (state = null, action) => {
     }
     case DISCARD_RECORDING: {
       return { ...state, locations: [] };
+    }
+    case SAVE_TRACK_SUCCESS: {
+      return state;
     }
     default:
       return state;

@@ -7,7 +7,6 @@ import {
 
 export default (shouldTrack, callback) => {
   const [error, setError] = useState(null);
-  console.log(shouldTrack);
   useEffect(() => {
     let subscriber;
     const startWatching = async () => {
@@ -32,12 +31,12 @@ export default (shouldTrack, callback) => {
     if (shouldTrack) {
       startWatching();
     } else {
+      if (subscriber) subscriber.remove();
       subscriber = null;
     }
     return () => {
       if (subscriber) {
-        // subscriber.remove();
-        subscriber = null;
+        subscriber.remove();
       }
     };
   }, [shouldTrack, callback]);
