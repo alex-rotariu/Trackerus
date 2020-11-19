@@ -13,7 +13,10 @@ const pointSchema = new mongoose.Schema({
 });
 
 const likeSchema = new mongoose.Schema({
-  username: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   createdAt: Date
 });
 

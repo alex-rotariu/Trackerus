@@ -14,6 +14,7 @@ const haversine = (coords1, coords2) => {
 };
 
 export default useCalculateDistance = (locations) => {
+  locations = locations.map((loc) => loc.coords);
   let distance = 0;
   // console.log(locations);
   for (let i = 1; i < locations.length; i++) {

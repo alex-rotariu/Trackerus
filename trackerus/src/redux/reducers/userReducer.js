@@ -9,7 +9,7 @@ import {
 } from "../types";
 
 export default (state = null, action) => {
-  // console.log(action);
+  //   console.log(state);
   switch (action.type) {
     case USER_SIGNUP_FAIL:
       return state;

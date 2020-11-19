@@ -1,0 +1,51 @@
+import React, { useEffect } from "react";
+import {
+  SafeAreaView,
+  Text,
+  FlatList,
+  StyleSheet,
+  StatusBar
+} from "react-native";
+import { connect } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+
+import { fetchMyTracks } from "../redux/actions/tracksActions";
+import TrackCard from "./TrackCard";
+
+const ProfileTracksList = ({ tracks, fetchMyTracks }) => {
+  const navigation = useNavigation();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      fetchMyTracks();
+      return function cleanup() {
+        unsubscribe();
+      };
+    });
+  }, []);
+  const renderItem = ({ item }) => <TrackCard track={item} />;
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>Tracks</Text>
+      <FlatList
+        data={tracks}
+        renderItem={renderItem}
+        keyExtractor={(item) => item._id}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0
+  }
+});
+
+const mapStateToProps = (state) => {
+  return {
+    tracks: state.myTracks
+  };
+};
+
+export default connect(mapStateToProps, { fetchMyTracks })(ProfileTracksList);

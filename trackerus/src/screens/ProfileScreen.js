@@ -4,11 +4,13 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 
 import { signout } from "../redux/actions/userActions";
+import ProfileTracksList from "../components/ProfileTracksList";
 
-const ProfileScreen = ({ signout }) => {
+const ProfileScreen = ({ signout, navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Profile</Text>
+      <ProfileTracksList />
       <Button
         buttonStyle={{ width: 200 }}
         title="Sign Out"

@@ -30,6 +30,7 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
     res.send({
       token,
       user: {
+        _id: user._id,
         username,
         email,
         fullName,
@@ -51,6 +52,7 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
     res.send({
       token,
       user: {
+        _id: user._id,
         username: user.username,
         email: user.email,
         fullName: user.fullName,

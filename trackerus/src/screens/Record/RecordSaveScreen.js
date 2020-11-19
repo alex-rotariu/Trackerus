@@ -35,7 +35,10 @@ const RecordSaveScreen = ({ saveTrack, coordinates, trackName }) => {
             <Spacer>
               <Text>{trackName}</Text>
               <Text>{distance}</Text>
-              <Button title="Save track" onPress={saveTrack} />
+              <Button
+                title="Save track"
+                onPress={() => saveTrack(trackName, coordinates)}
+              />
             </Spacer>
           </SafeAreaView>
         </KeyboardAvoidingView>
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    coordinates: state.location.locations.map((loc) => loc.coords),
+    coordinates: state.location.locations,
     trackName: state.location.trackName
   };
 };
