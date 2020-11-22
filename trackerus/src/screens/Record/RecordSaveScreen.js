@@ -19,9 +19,7 @@ import { saveTrack } from "../../redux/actions/locationActions";
 // And add form for save
 // Complete server upload
 
-const RecordSaveScreen = ({ saveTrack, coordinates, trackName }) => {
-  const [distance] = useCalculateDistance(coordinates);
-
+const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
   return (
     <View style={styles.wrapper}>
       <ScrollView style={{ width: Dimensions.get("window").width * 0.9 }}>
@@ -37,7 +35,7 @@ const RecordSaveScreen = ({ saveTrack, coordinates, trackName }) => {
               <Text>{distance}</Text>
               <Button
                 title="Save track"
-                onPress={() => saveTrack(trackName, coordinates)}
+                onPress={() => saveTrack(navigation)}
               />
             </Spacer>
           </SafeAreaView>
@@ -60,8 +58,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    coordinates: state.location.locations,
-    trackName: state.location.trackName
+    trackName: state.location.trackName,
+    distance: state.location.distance
   };
 };
 

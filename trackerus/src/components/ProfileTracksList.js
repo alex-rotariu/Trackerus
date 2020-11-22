@@ -25,8 +25,9 @@ const ProfileTracksList = ({ tracks, fetchMyTracks }) => {
   const renderItem = ({ item }) => <TrackCard track={item} />;
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Tracks</Text>
+      <Text>Your Tracks</Text>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={tracks}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}

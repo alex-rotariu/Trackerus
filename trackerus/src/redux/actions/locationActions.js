@@ -12,6 +12,7 @@ import {
 import { navigate } from "../../navigation/RootNavigation";
 
 import api from "../../api/axiosConfig";
+import useCalculateDistance from "../../hooks/useCalculateDistance";
 
 export const addLocation = (location, recording) => (dispatch) => {
   dispatch({ type: ADD_CURRENT_LOCATION, payload: location });
@@ -39,20 +40,27 @@ export const reset = () => {
   return { type: RESET };
 };
 
-export const confirmTrack = () => {
+export const confirmTrack = (coordinates) => {
+  const [distance] = useCalculateDistance(coordinates);
   navigate("RecordSave");
-  return { type: CONFIRM_TRACK };
+  return { type: CONFIRM_TRACK, payload: distance };
 };
 
-export const saveTrack = (trackName, coordinates) => async (dispatch) => {
+export const saveTrack = (navigation) => async (dispatch, getState) => {
+  const state = getState();
+  const location = state.location;
   try {
     const response = await api.post("/tracks/", {
-      trackName,
-      locations: coordinates
+      trackName: location.trackName,
+      locations: location.locations,
+      distance: location.distance
     });
     dispatch({ type: SAVE_TRACK_SUCCESS, payload: response.data });
+    navigation.pop();
     navigate("Profile");
   } catch (err) {
+    navigation.pop();
+    navigate("RecordCreate");
     dispatch({
       type: SAVE_TRACK_FAIL,
       payload: {

@@ -30,10 +30,18 @@ const trackSchema = new mongoose.Schema({
     default: ""
   },
   locations: [pointSchema],
+  distance: {
+    type: Number,
+    default: 0
+  },
   createdAt: {
     type: Date
   },
-  likes: [likeSchema]
+  likes: [likeSchema],
+  createdAt: {
+    type: Date,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Track", trackSchema);

@@ -26,13 +26,13 @@ export default (state = null, action) => {
       return { ...state, recording: false };
     }
     case CONFIRM_TRACK: {
-      return state;
+      return { ...state, distance: action.payload };
     }
     case DISCARD_RECORDING: {
       return { ...state, locations: [] };
     }
     case SAVE_TRACK_SUCCESS: {
-      return state;
+      return { ...state, distance: 0, locations: [], trackName: "" };
     }
     default:
       return state;

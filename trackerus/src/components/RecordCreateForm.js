@@ -29,7 +29,7 @@ const RecordCreateForm = ({
       setErrors("Please provide a title and locations");
       setModalVisible(true);
     } else {
-      confirmTrack();
+      confirmTrack(locations);
     }
   };
 
