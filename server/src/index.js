@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const trackRoutes = require("./routes/trackRoutes");
 const followerRoutes = require("./routes/followerRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use(bodyParser.json());
 
 app.use("/auth", authRoutes);
 app.use("/tracks", trackRoutes);
-app.use("/follower", followerRoutes);
+app.use("/followers", followerRoutes);
+app.use("/users", userRoutes);
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to mongo instance");

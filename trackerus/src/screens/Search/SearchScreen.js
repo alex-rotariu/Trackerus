@@ -1,28 +1,82 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import React, { useState } from "react";
+import { SearchBar, ListItem } from "react-native-elements";
+import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import { connect } from "react-redux";
 
-const SearchScreen = ({ navigation }) => {
+import { fetchUsers } from "../../redux/actions/searchActions";
+
+const renderSeparator = () => {
   return (
-    <View style={styles.container}>
-      <Text>Search</Text>
-      <Button
-        buttonStyle={{ width: 200 }}
-        title="View Results"
-        type="outline"
-        onPress={() => navigation.navigate("SearchView")}
-      />
-    </View>
+    <View
+      style={{
+        height: 1,
+        width: "100%",
+        backgroundColor: "#000"
+      }}
+    />
+  );
+};
+
+const SearchScreen = ({ fetchUsers, users }) => {
+  const [name, setText] = useState("");
+
+  const searchFilterFunction = (text) => {
+    if (text) {
+      fetchUsers(text);
+      setText(text);
+    } else {
+      // // Inserted text is blank
+      // // Update FilteredDataSource with masterDataSource
+      // setFilteredDataSource(masterDataSource);
+      setText(text);
+    }
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <FlatList
+          data={users}
+          renderItem={({ item }) => (
+            <ListItem
+              roundAvatar
+              title={`${item.username}`}
+              // subtitle={item.email}
+              // avatar={{ uri: item.picture.thumbnail }}
+              containerStyle={{ borderBottomWidth: 0 }}
+            />
+          )}
+          keyExtractor={(item) => item.email}
+          ItemSeparatorComponent={renderSeparator}
+          ListHeaderComponent={
+            <SearchBar
+              placeholder="Type Here..."
+              round
+              searchIcon={{ size: 24 }}
+              onChangeText={(text) => {
+                searchFilterFunction(text);
+              }}
+              onClear={(text) => searchFilterFunction(text)}
+              autoCorrect={false}
+              value={name}
+            />
+          }
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
-    marginBottom: 50
+    backgroundColor: "white"
   }
 });
 
-export default SearchScreen;
+const mapStateToProps = (state) => {
+  return {
+    users: state.search.users
+  };
+};
+
+export default connect(mapStateToProps, { fetchUsers })(SearchScreen);

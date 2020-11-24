@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Platform,
   View,
+  SafeAreaView,
   ScrollView,
   Dimensions
 } from "react-native";
@@ -26,11 +27,11 @@ const SignUpForm = ({ signup }) => {
   });
 
   return (
-    <View style={styles.wrapper}>
+    <SafeAreaView forceInset={{ top: "always" }} style={styles.wrapper}>
       <ScrollView
         style={{
           width: Dimensions.get("window").width * 0.7,
-          height: Dimensions.get("window").height * 1
+          height: Dimensions.get("window").height * 0.7
         }}
       >
         <Spacer>
@@ -114,7 +115,7 @@ const SignUpForm = ({ signup }) => {
           />
         </Spacer>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
