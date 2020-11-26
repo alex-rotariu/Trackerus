@@ -24,24 +24,17 @@ const ProfileTracksList = ({ tracks, fetchMyTracks }) => {
   }, []);
   const renderItem = ({ item }) => <TrackCard track={item} />;
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Your Tracks</Text>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={tracks}
-        renderItem={renderItem}
-        keyExtractor={(item) => item._id}
-      />
-    </SafeAreaView>
+    <FlatList
+      style={{ paddingVertical: 10, marginBottom: 20 }}
+      showsVerticalScrollIndicator={false}
+      data={tracks}
+      renderItem={renderItem}
+      keyExtractor={(item) => item._id}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0
-  }
-});
+const styles = StyleSheet.create({});
 
 const mapStateToProps = (state) => {
   return {

@@ -55,10 +55,12 @@ export const saveTrack = (navigation) => async (dispatch, getState) => {
       locations: location.locations,
       distance: location.distance
     });
+    console.log(response.data);
     dispatch({ type: SAVE_TRACK_SUCCESS, payload: response.data });
     navigation.pop();
     navigate("Profile");
   } catch (err) {
+    console.log(err);
     navigation.pop();
     navigate("RecordCreate");
     dispatch({

@@ -34,7 +34,11 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
         username,
         email,
         fullName,
-        dateOfBirth
+        dateOfBirth,
+        trackCount,
+        followerCount,
+        followingCount,
+        profilePic
       }
     });
   } catch (err) {
@@ -56,7 +60,11 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
         username: user.username,
         email: user.email,
         fullName: user.fullName,
-        dateOfBirth: user.dateOfBirth
+        dateOfBirth: user.dateOfBirth,
+        trackCount: user.trackCount,
+        followerCount: user.followerCount,
+        followingCount: user.followingCount,
+        profilePic: user.profilePic
       }
     });
   } catch (err) {

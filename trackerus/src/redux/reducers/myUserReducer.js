@@ -5,11 +5,11 @@ import {
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAIL,
-  USER_SIGNOUT
+  USER_SIGNOUT,
+  SAVE_TRACK_SUCCESS
 } from "../types";
 
 export default (state = null, action) => {
-  //   console.log(state);
   switch (action.type) {
     case USER_SIGNUP_FAIL:
       return state;
@@ -24,7 +24,7 @@ export default (state = null, action) => {
     case USER_SIGNOUT:
       return {
         ...state,
-        user: null,
+        user: { profilePic: {} },
         token: null
       };
     case USER_SIGNIN_FAIL:
@@ -37,6 +37,12 @@ export default (state = null, action) => {
         user: action.payload.user,
         token: action.payload.token
       };
+    case SAVE_TRACK_SUCCESS: {
+      return {
+        ...state,
+        user: { ...state.user, trackCount: state.user.trackCount + 1 }
+      };
+    }
     default:
       return state;
   }

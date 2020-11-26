@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const trackRoutes = require("./routes/trackRoutes");
 const followerRoutes = require("./routes/followerRoutes");
 const userRoutes = require("./routes/userRoutes");
+const cors = require("cors");
 
 const app = express();
 
@@ -19,6 +20,7 @@ mongoose.connect(mongoUri, {
 });
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/auth", authRoutes);
 app.use("/tracks", trackRoutes);

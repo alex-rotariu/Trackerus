@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Button } from "react-native-elements";
 
 import RecordCreate from "../screens/Record/RecordCreateScreen";
 import RecordSave from "../screens/Record/RecordSaveScreen";
@@ -8,6 +9,8 @@ import SearchView from "../screens/Search/SearchView";
 import Profile from "../screens/ProfileScreen";
 import Home from "../screens/HomeScreen";
 import Feed from "../screens/FeedScreen";
+
+import { signout } from "../redux/actions/userActions";
 
 const Stack = createStackNavigator();
 
@@ -45,10 +48,23 @@ const SearchStackNavigator = () => {
   );
 };
 
-const ProfileStackNavigator = () => {
+const ProfileStackNavigator = ({ signout }) => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen
+        name="Profile"
+        // options={{
+        //   headerRight: () => (
+        //     <Button
+        //       buttonStyle={{ width: 100 }}
+        //       title="Sign Out"
+        //       type="outline"
+        //       onPress={signout}
+        //     />
+        //   )
+        // }}
+        component={Profile}
+      />
     </Stack.Navigator>
   );
 };

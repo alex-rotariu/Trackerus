@@ -24,7 +24,6 @@ export default TrackCard = (props) => {
   const { track, mapInitialRegion } = props;
   const coordinates = track.locations.map((obj) => obj.coords);
   const [mapRef, setMapRef] = useState(null);
-
   return (
     <View style={styles.shadowStyle}>
       <View style={styles.container}>

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const requireAuth = require("../middlewares/requireAuth");
 
 const Track = require("../models/Track");
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  const { _id } = req.user;
   const { trackName, locations, distance } = req.body;
   if (!trackName || !locations) {
     res.status(422).send({ error: "You must provide a name and locations" });
@@ -29,6 +31,9 @@ router.post("/", async (req, res) => {
       createdAt: Date.now()
     });
     await track.save();
+    const user = await User.findById(_id);
+    user.trackCount = user.trackCount + 1;
+    await user.save();
     res.send({ track });
   } catch (err) {
     console.log(err);

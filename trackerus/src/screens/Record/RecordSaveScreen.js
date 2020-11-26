@@ -32,7 +32,10 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
             <Map view={true} />
             <Spacer>
               <Text>{trackName}</Text>
-              <Text>{distance}</Text>
+              <Text>
+                {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100}
+                km
+              </Text>
               <Button
                 title="Save track"
                 onPress={() => saveTrack(navigation)}

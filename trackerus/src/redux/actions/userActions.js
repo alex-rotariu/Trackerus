@@ -13,6 +13,14 @@ import {
 
 import api from "../../api/axiosConfig";
 
+export const uploadImage = (result) => async (dispatch) => {
+  const response = await api.post("/users/image", {
+    base64: result.base64,
+    type: result.type
+  });
+  // console.log("response", response.data);
+};
+
 export const signup = ({
   username,
   email,
@@ -51,6 +59,7 @@ export const signin = ({ username, password }) => async (dispatch) => {
       username,
       password
     });
+    // console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: response.data });
     navigate("Authenticated");
@@ -64,6 +73,7 @@ export const signin = ({ username, password }) => async (dispatch) => {
 
 export const signout = () => async (dispatch) => {
   await AsyncStorage.removeItem("token");
+
   dispatch({ type: USER_SIGNOUT });
   navigate("NotAuthenticated");
 };
