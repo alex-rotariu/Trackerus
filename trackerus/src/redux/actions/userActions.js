@@ -42,7 +42,7 @@ export const signup = ({
     // console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNUP_SUCCESS, payload: response.data });
-    navigate("Authenticated");
+    // navigate("Authenticated");
   } catch (err) {
     dispatch({
       type: USER_SIGNUP_FAIL,

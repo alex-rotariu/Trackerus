@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SearchBar, ListItem } from "react-native-elements";
+import { SearchBar, ListItem, Avatar } from "react-native-elements";
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import { connect } from "react-redux";
 
@@ -38,13 +38,23 @@ const SearchScreen = ({ fetchUsers, users }) => {
         <FlatList
           data={users}
           renderItem={({ item }) => (
-            <ListItem
-              roundAvatar
-              title={`${item.username}`}
-              // subtitle={item.email}
-              // avatar={{ uri: item.picture.thumbnail }}
-              containerStyle={{ borderBottomWidth: 0 }}
-            />
+            <ListItem bottomDivider>
+              {/* {item.profilePic && ( */}
+              <Avatar
+                rounded
+                source={{
+                  uri: item.profilePic
+                    ? `data:image/gif;base64,${item.profilePic.base64}`
+                    : null
+                }}
+              />
+              {/* )} */}
+              <ListItem.Content>
+                <ListItem.Title>{item.username}</ListItem.Title>
+                <ListItem.Subtitle>{item.email}</ListItem.Subtitle>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
           )}
           keyExtractor={(item) => item.email}
           ItemSeparatorComponent={renderSeparator}

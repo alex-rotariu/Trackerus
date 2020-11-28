@@ -24,18 +24,24 @@ router.post("/image", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
+  // console.log(req.user);
   const { name } = req.query;
   console.log(req.query);
-  const users = await User.find({
-    $or: [
-      {
-        username: { $regex: ".*" + name + ".*" }
-      },
-      {
-        fullName: { $regex: ".*" + name + ".*" }
-      }
-    ]
-  }).limit(10);
+  const users = await User.find(
+    {
+      $or: [
+        {
+          username: { $regex: ".*" + name + ".*" }
+        },
+        {
+          fullName: { $regex: ".*" + name + ".*" }
+        }
+      ],
+      _id: { $ne: req.user.id }
+    },
+    "-password"
+  ).limit(10);
+  console.log(users);
   res.send(users);
 });
 

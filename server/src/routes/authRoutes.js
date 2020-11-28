@@ -31,14 +31,14 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
       token,
       user: {
         _id: user._id,
-        username,
-        email,
-        fullName,
-        dateOfBirth,
-        trackCount,
-        followerCount,
-        followingCount,
-        profilePic
+        username: user.username,
+        email: user.email,
+        fullName: user.fullName,
+        dateOfBirth: user.dateOfBirth,
+        trackCount: user.trackCount,
+        followerCount: user.followerCount,
+        followingCount: user.followingCount,
+        profilePic: user.profilePic
       }
     });
   } catch (err) {
