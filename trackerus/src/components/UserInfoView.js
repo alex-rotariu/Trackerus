@@ -6,7 +6,7 @@ const screenWidth = Dimensions.get("window").width;
 
 export default UserInfoView = ({ props }) => {
   const { followers, following, trackCount } = props;
-  console.log(followers, following, trackCount);
+  // console.log(followers, following, trackCount);
   return (
     <View style={styles.container}>
       <View style={styles.element}>

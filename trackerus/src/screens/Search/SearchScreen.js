@@ -3,7 +3,7 @@ import { SearchBar, ListItem, Avatar } from "react-native-elements";
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import { connect } from "react-redux";
 
-import { fetchUsers } from "../../redux/actions/searchActions";
+import { fetchUsers, setCurrentUser } from "../../redux/actions/searchActions";
 
 const renderSeparator = () => {
   return (
@@ -17,7 +17,7 @@ const renderSeparator = () => {
   );
 };
 
-const SearchScreen = ({ fetchUsers, users }) => {
+const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
   const [name, setText] = useState("");
 
   const searchFilterFunction = (text) => {
@@ -38,7 +38,10 @@ const SearchScreen = ({ fetchUsers, users }) => {
         <FlatList
           data={users}
           renderItem={({ item }) => (
-            <ListItem bottomDivider>
+            <ListItem bottomDivider onPress={() => {
+              setCurrentUser(item)
+              navigation.navigate("SearchView")
+            }}>
               {/* {item.profilePic && ( */}
               <Avatar
                 rounded
@@ -89,4 +92,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(SearchScreen);
+export default connect(mapStateToProps, { fetchUsers, setCurrentUser })(SearchScreen);

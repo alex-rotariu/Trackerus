@@ -1,4 +1,4 @@
-import { FETCH_MY_TRACKS_SUCCESS, FETCH_MY_TRACKS_FAIL } from "../types";
+import { FETCH_MY_TRACKS_SUCCESS, FETCH_MY_TRACKS_FAIL, USER_SIGNOUT } from "../types";
 
 export default (state = [], action) => {
   // console.log(action.payload);
@@ -9,6 +9,10 @@ export default (state = [], action) => {
     case FETCH_MY_TRACKS_SUCCESS: {
       return action.payload;
     }
+    case FETCH_MY_TRACKS_FAIL:
+      return state;
+    case USER_SIGNOUT:
+      return []
     default:
       return state;
   }

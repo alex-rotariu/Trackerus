@@ -6,7 +6,8 @@ import {
   DISCARD_RECORDING,
   SAVE_TRACK_SUCCESS,
   START_RECORDING,
-  STOP_RECORDING
+  STOP_RECORDING,
+  USER_SIGNOUT
 } from "../types";
 
 export default (state = null, action) => {
@@ -33,6 +34,14 @@ export default (state = null, action) => {
     }
     case SAVE_TRACK_SUCCESS: {
       return { ...state, distance: 0, locations: [], trackName: "" };
+    }
+    case USER_SIGNOUT: {
+      return {
+        recording: false,
+        locations: [],
+        currentLocation: null,
+        trackName: ""
+      }
     }
     default:
       return state;

@@ -59,7 +59,6 @@ export const signin = ({ username, password }) => async (dispatch) => {
       username,
       password
     });
-    // console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: response.data });
     navigate("Authenticated");
