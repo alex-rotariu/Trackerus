@@ -12,9 +12,13 @@ router.use(requireAuth);
 router.get("/", async (req, res) => {
   console.log(req.body);
   const tracks = await Track.find({ userId: req.user._id });
-  console.log(tracks);
   res.send(tracks);
 });
+
+router.get("/:userId", async (req, res) => {
+  const tracks = await Track.find({ userId: req.params.userId })
+  res.send(tracks)
+})
 
 router.post("/", async (req, res) => {
   const { _id } = req.user;

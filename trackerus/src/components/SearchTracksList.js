@@ -6,13 +6,10 @@ import {
     StyleSheet,
     StatusBar
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import TrackCard from "./TrackCard";
 
 const SearchTracksList = ({ tracks }) => {
-    const navigation = useNavigation();
-    console.log(tracks)
     const renderItem = ({ item }) => <TrackCard track={item} />;
     return (
         <FlatList

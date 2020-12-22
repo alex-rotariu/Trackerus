@@ -18,15 +18,13 @@ router.post("/image", async (req, res) => {
       imageFormat: req.body.type
     };
     await user.save();
-    console.log(user);
-  } catch (err) {}
+  } catch (err) { }
   res.send(user);
 });
 
 router.get("/", async (req, res) => {
   // console.log(req.user);
   const { name } = req.query;
-  console.log(req.query);
   const users = await User.find(
     {
       $or: [
@@ -41,7 +39,6 @@ router.get("/", async (req, res) => {
     },
     "-password"
   ).limit(10);
-  console.log(users);
   res.send(users);
 });
 

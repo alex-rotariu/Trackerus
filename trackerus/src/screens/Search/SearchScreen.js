@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchBar, ListItem, Avatar } from "react-native-elements";
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import { connect } from "react-redux";

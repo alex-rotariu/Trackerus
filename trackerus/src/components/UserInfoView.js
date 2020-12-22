@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
   number: { textAlign: "center" },
   text: { textAlign: "center" },
   container: {
-    marginTop: screenHeight * 0.1,
-    flex: 1,
+    marginTop: screenHeight * 0.075,
+    marginBottom: screenHeight * 0.025,
+    // flex: 1,
     flexDirection: "row",
     justifyContent: "space-around"
   },

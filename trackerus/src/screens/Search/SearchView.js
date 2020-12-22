@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -9,12 +9,20 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
+
+import { fetchUserTracks, cleanUserTracks } from '../../redux/actions/searchActions'
 import SearchTracksList from '../../components/SearchTracksList'
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const SearchView = ({ user, tracks, followed }) => {
-  console.log(user)
+const SearchView = ({ cleanUserTracks, fetchUserTracks, user, tracks, followed }) => {
+  useEffect(() => {
+    if (user._id)
+      fetchUserTracks(user._id)
+    return () => {
+      cleanUserTracks()
+    }
+  }, [])
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -42,8 +50,8 @@ const SearchView = ({ user, tracks, followed }) => {
         }}
       />
       <SafeAreaView style={styles.trackList}>
-        <Text style={{ fontSize: 16, textAlign: "center" }}>Your Tracks</Text>
-        <SearchTracksList tracks />
+        <Text style={{ fontSize: 16, textAlign: "center" }}>{user.fullName ? user.fullName : ""} tracks</Text>
+        <SearchTracksList tracks={tracks} />
       </SafeAreaView>
     </View>
   );
@@ -52,7 +60,7 @@ const SearchView = ({ user, tracks, followed }) => {
 const styles = StyleSheet.create({
   trackList: {
     // flex: 1
-    marginTop: screenHeight * 0.075
+    marginTop: screenHeight * 0.005
   },
   headerContent: {
     flexDirection: "row",
@@ -99,4 +107,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(SearchView);
+export default connect(mapStateToProps, { fetchUserTracks, cleanUserTracks })(SearchView);
