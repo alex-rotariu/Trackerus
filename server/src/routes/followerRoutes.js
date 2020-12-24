@@ -2,8 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const requireAuth = require("../middlewares/requireAuth");
 const Follower = require("../models/Follower");
+const User = require("../models/User");
 
 const router = express.Router();
+router.use(requireAuth);
 
 router.get("/", async (req, res) => {
     console.log(req.body);
@@ -11,7 +13,36 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    console.log(req.body);
+    const { _id } = req.user
+    userId = _id
+    followerId = req.body.followerId
+    try {
+        follower = await Follower.findOne(
+            {
+                $and:
+                    [
+                        {
+                            userId: userId
+                        },
+                        {
+                            followerId: followerId
+                        }
+                    ]
+            })
+        if (!follower) {
+            const follower = new Follower({
+                userId: userId,
+                followerId: followerId
+            })
+            await follower.save()
+            res.send({ follower: follower })
+        } else {
+            await Follower.deleteOne({ _id: follower._id })
+            res.send({ follower: follower._id })
+        }
+    } catch (err) {
+        res.send(err)
+    }
 
 });
 

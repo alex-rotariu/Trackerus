@@ -5,7 +5,7 @@ const followerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  followerOd: {
+  followerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }

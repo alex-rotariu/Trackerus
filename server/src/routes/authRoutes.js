@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const Follower = require("../models/Follower");
 
 const validate = require("../validators/validate");
 const {
@@ -38,7 +39,8 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
         trackCount: user.trackCount,
         followerCount: user.followerCount,
         followingCount: user.followingCount,
-        profilePic: user.profilePic
+        profilePic: user.profilePic,
+        followed: []
       }
     });
   } catch (err) {
@@ -53,6 +55,7 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
+    const followed = await Follower.find({ userId: user._id })
     res.send({
       token,
       user: {
@@ -64,7 +67,8 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
         trackCount: user.trackCount,
         followerCount: user.followerCount,
         followingCount: user.followingCount,
-        profilePic: user.profilePic
+        profilePic: user.profilePic,
+        followed: followed
       }
     });
   } catch (err) {

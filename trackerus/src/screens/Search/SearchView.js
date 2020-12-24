@@ -10,12 +10,12 @@ import {
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 
-import { fetchUserTracks, cleanUserTracks } from '../../redux/actions/searchActions'
+import { fetchUserTracks, cleanUserTracks, followUser } from '../../redux/actions/searchActions'
 import SearchTracksList from '../../components/SearchTracksList'
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const SearchView = ({ cleanUserTracks, fetchUserTracks, user, tracks, followed }) => {
+const SearchView = ({ cleanUserTracks, fetchUserTracks, followUser, user, tracks, followed }) => {
   useEffect(() => {
     if (user._id)
       fetchUserTracks(user._id)
@@ -32,7 +32,7 @@ const SearchView = ({ cleanUserTracks, fetchUserTracks, user, tracks, followed }
             titleStyle={{ fontSize: 12 }}
             buttonStyle={{ marginLeft: screenWidth * 0.3 }}
             title={followed ? "Stop following" : "Follow"}
-            onPress={() => { console.log("follow") }}
+            onPress={() => followUser(user._id)}
           />
         </View>
       </View>
@@ -100,11 +100,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
+  const followExists = user => {
+    return user.followerId === state.search.currentUser._id
+  }
   return {
     user: state.search.currentUser,
     tracks: state.search.tracks,
-    followed: true
+    followed: state.user.user.followed.some(followExists)
   }
 }
 
-export default connect(mapStateToProps, { fetchUserTracks, cleanUserTracks })(SearchView);
+export default connect(mapStateToProps, { fetchUserTracks, cleanUserTracks, followUser })(SearchView);

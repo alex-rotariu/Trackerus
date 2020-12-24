@@ -6,7 +6,7 @@ import reducers from "./reducers";
 const composeEnhanvers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
-  user: { loading: false, user: { profilePic: {} }, token: "" },
+  user: { loading: false, user: { profilePic: {}, followed: [] }, token: "" },
   location: {
     recording: false,
     locations: [],

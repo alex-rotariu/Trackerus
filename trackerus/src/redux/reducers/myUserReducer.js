@@ -6,7 +6,8 @@ import {
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAIL,
   USER_SIGNOUT,
-  SAVE_TRACK_SUCCESS
+  SAVE_TRACK_SUCCESS,
+  FOLLOW_USER
 } from "../types";
 
 export default (state = null, action) => {
@@ -24,7 +25,10 @@ export default (state = null, action) => {
     case USER_SIGNOUT:
       return {
         ...state,
-        user: { profilePic: {} },
+        user: {
+          profilePic: {},
+          followed: []
+        },
         token: null
       };
     case USER_SIGNIN_FAIL:
@@ -42,6 +46,30 @@ export default (state = null, action) => {
         ...state,
         user: { ...state.user, trackCount: state.user.trackCount + 1 }
       };
+    }
+    case FOLLOW_USER: {
+      if (action.payload.follower.userId) {
+        let newFollowed = state.user.followed
+        newFollowed.push(action.payload.follower)
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            followed: newFollowed
+          }
+        }
+      } else {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            followed: state.user.followed.
+              filter(follower => {
+                return action.payload.follower !== follower._id
+              })
+          }
+        }
+      }
     }
     default:
       return state;
