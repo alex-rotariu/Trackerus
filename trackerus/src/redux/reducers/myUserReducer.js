@@ -27,7 +27,8 @@ export default (state = null, action) => {
         ...state,
         user: {
           profilePic: {},
-          followed: []
+          followed: [],
+          following: []
         },
         token: null
       };
@@ -48,13 +49,14 @@ export default (state = null, action) => {
       };
     }
     case FOLLOW_USER: {
-      if (action.payload.follower.userId) {
+      if (!action.payload.follower.delete) {
         let newFollowed = state.user.followed
         newFollowed.push(action.payload.follower)
         return {
           ...state,
           user: {
             ...state.user,
+            followingCount: state.user.followingCount + 1,
             followed: newFollowed
           }
         }
@@ -63,9 +65,10 @@ export default (state = null, action) => {
           ...state,
           user: {
             ...state.user,
+            followingCount: state.user.followingCount - 1,
             followed: state.user.followed.
               filter(follower => {
-                return action.payload.follower !== follower._id
+                return action.payload.follower._id !== follower._id
               })
           }
         }

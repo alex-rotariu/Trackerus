@@ -40,10 +40,10 @@ export const reset = () => {
   return { type: RESET };
 };
 
-export const confirmTrack = (coordinates) => {
+export const confirmTrack = (navigation, coordinates) => (dispatch) => {
   const [distance] = useCalculateDistance(coordinates);
-  navigate("RecordSave");
-  return { type: CONFIRM_TRACK, payload: distance };
+  navigation.navigate("RecordSave");
+  dispatch({ type: CONFIRM_TRACK, payload: distance });
 };
 
 export const saveTrack = (navigation) => async (dispatch, getState) => {
@@ -55,7 +55,6 @@ export const saveTrack = (navigation) => async (dispatch, getState) => {
       locations: location.locations,
       distance: location.distance
     });
-    console.log(response.data);
     dispatch({ type: SAVE_TRACK_SUCCESS, payload: response.data });
     navigation.pop();
     navigate("Profile");

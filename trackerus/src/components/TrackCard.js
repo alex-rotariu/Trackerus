@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, FlatList, Dimensions, StyleSheet } from "react-native";
 import MapView, { Polyline } from "react-native-maps";
 import moment from "moment";
@@ -55,7 +55,9 @@ export default TrackCard = (props) => {
           props={{
             trackName: track.trackName,
             distance: track.distance,
-            createdAt: moment(track.createdAt).fromNow()
+            createdAt: moment(track.createdAt).fromNow(),
+            username: track.username,
+            profilePic: track.profilePic
           }}
         />
       </View>

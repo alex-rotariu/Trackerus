@@ -50,7 +50,7 @@ const SearchView = ({ cleanUserTracks, fetchUserTracks, followUser, user, tracks
         }}
       />
       <SafeAreaView style={styles.trackList}>
-        <Text style={{ fontSize: 16, textAlign: "center" }}>{user.fullName ? user.fullName : ""} tracks</Text>
+        {/* <Text style={{ fontSize: 16, textAlign: "center" }}>{user.fullName ? user.fullName : ""} tracks</Text> */}
         <SearchTracksList tracks={tracks} />
       </SafeAreaView>
     </View>
@@ -59,8 +59,8 @@ const SearchView = ({ cleanUserTracks, fetchUserTracks, followUser, user, tracks
 
 const styles = StyleSheet.create({
   trackList: {
-    // flex: 1
-    marginTop: screenHeight * 0.005
+    flex: 1,
+    marginTop: screenHeight * 0.025
   },
   headerContent: {
     flexDirection: "row",

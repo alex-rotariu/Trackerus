@@ -35,10 +35,22 @@ router.post("/", async (req, res) => {
                 followerId: followerId
             })
             await follower.save()
+            const user = await User.findById(userId)
+            const followedUser = await User.findById(followerId)
+            followedUser.followerCount = followedUser.followerCount + 1
+            user.followingCount = user.followingCount + 1
+            await user.save();
+            await followedUser.save();
             res.send({ follower: follower })
         } else {
             await Follower.deleteOne({ _id: follower._id })
-            res.send({ follower: follower._id })
+            const user = await User.findById(userId)
+            const followedUser = await User.findById(followerId)
+            user.followingCount = user.followingCount - 1
+            followedUser.followerCount = followedUser.followerCount - 1
+            await user.save();
+            await followedUser.save();
+            res.send({ follower: { _id: follower._id, followerId, userId, delete: true } })
         }
     } catch (err) {
         res.send(err)

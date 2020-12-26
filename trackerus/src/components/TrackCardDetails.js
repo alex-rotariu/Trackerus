@@ -1,28 +1,30 @@
 import React, { useReducer, useState } from "react";
-import { Text, View, Dimensions, StyleSheet } from "react-native";
-import UserAvatar from "react-native-user-avatar";
+import { Text, View, Dimensions, StyleSheet, Image } from "react-native";
+
+const screenHeight = Dimensions.get("window").height;
+const screenWidth = Dimensions.get("window").width;
 
 export default TrackCardDetails = ({ props }) => {
   const { trackName, distance, createdAt } = props;
+  const { profilePic, username } = props
   return (
     <View style={styles.container}>
       <View style={styles.userDetails}>
-        <UserAvatar
+        <Image
           size={32}
           name={"Alex"}
-          src={"https://dummyimage.com/100x100/000/fff"}
+          source={{ uri: `data:image/gif;base64,${profilePic.base64}` }}
           // colors={colors}
           style={styles.imageStyle}
         />
         <View>
-          <Text>User name</Text>
+          <Text style={styles.username}>{username}</Text>
           <Text style={styles.createdAtStyle}>{createdAt}</Text>
         </View>
       </View>
       <Text style={styles.titleStyle}>{trackName}</Text>
       <Text style={styles.textStyle}>
-        {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100}
-        kilometers
+        {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100} kilometers
       </Text>
     </View>
   );
@@ -41,12 +43,18 @@ const styles = StyleSheet.create({
   userDetails: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10
+    marginVertical: 10,
+    marginLeft: 15
   },
   imageStyle: {
     marginHorizontal: 10,
-    width: 30,
-    height: 30
+    width: screenHeight * 0.075,
+    height: screenHeight * 0.075,
+    borderRadius: 63,
+  },
+  username: {
+    fontSize: 20,
+    fontWeight: "600"
   },
   titleStyle: {
     fontSize: 22,

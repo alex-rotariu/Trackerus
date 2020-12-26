@@ -40,7 +40,8 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
         followerCount: user.followerCount,
         followingCount: user.followingCount,
         profilePic: user.profilePic,
-        followed: []
+        followed: [],
+        following: []
       }
     });
   } catch (err) {
@@ -56,6 +57,7 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
     const followed = await Follower.find({ userId: user._id })
+    const following = await Follower.find({ followerId: user._id })
     res.send({
       token,
       user: {
@@ -68,7 +70,8 @@ router.post("/signin", userSignInRules(), validate, async (req, res) => {
         followerCount: user.followerCount,
         followingCount: user.followingCount,
         profilePic: user.profilePic,
-        followed: followed
+        followed: followed,
+        following: following
       }
     });
   } catch (err) {

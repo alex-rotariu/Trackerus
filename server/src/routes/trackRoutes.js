@@ -10,14 +10,25 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get("/", async (req, res) => {
-  console.log(req.body);
   const tracks = await Track.find({ userId: req.user._id });
-  res.send(tracks);
+  const promises = tracks.map(async element => {
+    const userDetails = await User.findById({ _id: element.userId }, "-password")
+
+    return { ...userDetails._doc, ...element._doc }
+  })
+  const newTracks = await Promise.all(promises)
+  res.send(newTracks);
 });
 
 router.get("/:userId", async (req, res) => {
   const tracks = await Track.find({ userId: req.params.userId })
-  res.send(tracks)
+  const promises = tracks.map(async element => {
+    const userDetails = await User.findById({ _id: element.userId }, "-password")
+
+    return { ...userDetails._doc, ...element._doc }
+  })
+  const newTracks = await Promise.all(promises)
+  res.send(newTracks);
 })
 
 router.post("/", async (req, res) => {

@@ -49,7 +49,7 @@ const RecordCreateScreen = ({ addLocation, recording, navigation }) => {
 
             <Map />
             {error ? <Text>Please enable location services</Text> : null}
-            <RecordCreateForm />
+            <RecordCreateForm navigation={navigation} />
           </SafeAreaView>
         </KeyboardAvoidingView>
       </ScrollView>

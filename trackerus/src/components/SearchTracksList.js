@@ -13,7 +13,7 @@ const SearchTracksList = ({ tracks }) => {
     const renderItem = ({ item }) => <TrackCard track={item} />;
     return (
         <FlatList
-            style={{ paddingVertical: 10, marginBottom: 20 }}
+            // style={{ paddingVertical: 10, marginBottom: 20 }}
             showsVerticalScrollIndicator={false}
             data={tracks}
             renderItem={renderItem}

@@ -90,7 +90,7 @@ const ProfileScreen = ({
         }}
       />
       <SafeAreaView style={styles.trackList}>
-        <Text style={{ fontSize: 16, textAlign: "center" }}>Your Tracks</Text>
+        {/* <Text style={{ fontSize: 16, textAlign: "center", marginVertical: screenHeight * 0.025 }}>Your Tracks</Text> */}
         <ProfileTracksList />
       </SafeAreaView>
     </View>
@@ -99,8 +99,8 @@ const ProfileScreen = ({
 
 const styles = StyleSheet.create({
   trackList: {
-    // flex: 1
-    marginTop: screenHeight * 0.075
+    flex: 1,
+    marginTop: screenHeight * 0.025
   },
   headerContent: {
     flexDirection: "row",

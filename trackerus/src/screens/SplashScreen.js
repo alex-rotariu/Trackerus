@@ -18,7 +18,12 @@ const SplashScreen = ({ navigation }) => {
       <Spacer>
         <Text>Don't have an account?</Text>
       </Spacer>
-      <NavigationLink text="Sign Up" routeName="SignUp" />
+      <Button
+        buttonStyle={{ width: 200 }}
+        title="Sign Up"
+        type="outline"
+        onPress={() => navigation.navigate("SignUp")}
+      />
     </View>
   );
 };

@@ -14,6 +14,7 @@ import {
 } from "../redux/actions/locationActions";
 
 const RecordCreateForm = ({
+  navigation,
   changeName,
   startRecording,
   stopRecording,
@@ -29,7 +30,7 @@ const RecordCreateForm = ({
       setErrors("Please provide a title and locations");
       setModalVisible(true);
     } else {
-      confirmTrack(locations);
+      confirmTrack(navigation, locations);
     }
   };
 

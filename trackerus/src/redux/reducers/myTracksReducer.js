@@ -1,7 +1,6 @@
 import { FETCH_MY_TRACKS_SUCCESS, FETCH_MY_TRACKS_FAIL, USER_SIGNOUT } from "../types";
 
 export default (state = [], action) => {
-  // console.log(action.payload);
   switch (action.type) {
     // TO DO
     // dont forget to check if fetched tracks are exactly
