@@ -11,6 +11,7 @@ import {
 } from "../types";
 
 export default (state = null, action) => {
+  console.log(state);
   switch (action.type) {
     case USER_SIGNUP_FAIL:
       return state;
@@ -50,8 +51,8 @@ export default (state = null, action) => {
     }
     case FOLLOW_USER: {
       if (!action.payload.follower.delete) {
-        let newFollowed = state.user.followed
-        newFollowed.push(action.payload.follower)
+        let newFollowed = state.user.followed;
+        newFollowed.push(action.payload.follower);
         return {
           ...state,
           user: {
@@ -59,19 +60,18 @@ export default (state = null, action) => {
             followingCount: state.user.followingCount + 1,
             followed: newFollowed
           }
-        }
+        };
       } else {
         return {
           ...state,
           user: {
             ...state.user,
             followingCount: state.user.followingCount - 1,
-            followed: state.user.followed.
-              filter(follower => {
-                return action.payload.follower._id !== follower._id
-              })
+            followed: state.user.followed.filter((follower) => {
+              return action.payload.follower._id !== follower._id;
+            })
           }
-        }
+        };
       }
     }
     default:

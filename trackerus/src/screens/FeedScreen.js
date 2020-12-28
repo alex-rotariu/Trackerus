@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { View, Text, StyleSheet } from "react-native";
 
-const FeedScreen = () => {
+import { fetchFeed } from "../redux/actions/tracksActions";
+
+const FeedScreen = ({ fetchFeed, posts }) => {
+  useEffect(() => {
+    fetchFeed();
+  }, []);
+
+  console.log(posts);
   return (
     <View style={styles.container}>
       <Text>Feed</Text>
@@ -18,4 +26,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FeedScreen;
+const mapStateToProps = (state) => {
+  return {
+    posts: state.feed.posts
+  };
+};
+
+export default connect(mapStateToProps, { fetchFeed })(FeedScreen);

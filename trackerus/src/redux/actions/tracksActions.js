@@ -11,11 +11,21 @@ import {
 
 import api from "../../api/axiosConfig";
 
-export const fetchMyTracks = () => async (dispatch, getState) => {
+export const fetchMyTracks = () => async (dispatch) => {
   try {
     const response = await api.get("/tracks");
     dispatch({ type: FETCH_MY_TRACKS_SUCCESS, payload: response.data });
   } catch (err) {
     dispatch({ type: FETCH_MY_TRACKS_FAIL });
+  }
+};
+
+export const fetchFeed = () => async (dispatch) => {
+  try {
+    const response = await api.get("/followers/feed");
+    console.log(response.data);
+    dispatch({ type: FETCH_FEED_SUCCESS, payload: response.data });
+  } catch (err) {
+    dispatch({ type: FETCH_FEED_FAIL, payload: response.data });
   }
 };

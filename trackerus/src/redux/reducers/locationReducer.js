@@ -41,7 +41,7 @@ export default (state = null, action) => {
         locations: [],
         currentLocation: null,
         trackName: ""
-      }
+      };
     }
     default:
       return state;
