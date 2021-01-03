@@ -52,7 +52,7 @@ const CardOptions = {
 const AuthStack = () => {
   const Authenticate = createStackNavigator();
   return (
-    <View style={styles.container}>
+    <View style={styles.containerView}>
       <ImageBackground source={image} style={styles.image}>
         <Authenticate.Navigator
           screenOptions={{
@@ -82,7 +82,7 @@ const AuthStack = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerView: {
     flex: 1,
     flexDirection: "column"
   },

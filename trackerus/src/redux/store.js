@@ -6,13 +6,18 @@ import reducers from "./reducers";
 const composeEnhanvers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
-  user: { loading: false, user: { profilePic: {}, followed: [], following: [] }, token: "" },
+  user: {
+    loading: false,
+    user: { profilePic: {}, followed: [], following: [] },
+    token: ""
+  },
   location: {
     recording: false,
     locations: [],
     currentLocation: null,
     trackName: ""
-  }
+  },
+  feed: { posts: [] }
 };
 
 export const store = createStore(

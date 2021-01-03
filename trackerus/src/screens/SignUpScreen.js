@@ -9,15 +9,23 @@ const SignUpScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SignUpForm />
-      <Spacer>
-        <Text h4>Already have an account?</Text>
-        <Button title="Sign In" onPress={() => navigation.navigate("SignIn")} />
-      </Spacer>
+      <View style={styles.bottomLink}>
+        <Spacer>
+          <Text h4>Already have an account?</Text>
+          <Button
+            title="Sign In"
+            onPress={() => navigation.navigate("SignIn")}
+          />
+        </Spacer>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  bottomLink: {
+    alignSelf: "center"
+  },
   container: {
     flex: 1,
     flexDirection: "column",

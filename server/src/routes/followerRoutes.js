@@ -26,7 +26,11 @@ router.get("/feed", async (req, res) => {
       .sort({ createdAt: -1 });
     const promises = tracks.map(async (element) => {
       const userDetails = await User.findById(element.userId, "-password");
-      return { post: { ...userDetails._doc }, track: { ...element._doc } };
+      return {
+        _id: element._doc._id,
+        post: { ...userDetails._doc },
+        track: { ...element._doc }
+      };
     });
     const posts = await Promise.all(promises);
     res.send(posts);

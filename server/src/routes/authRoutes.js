@@ -51,13 +51,12 @@ router.post("/signup", userSignUpRules(), validate, async (req, res) => {
 
 router.post("/signin", userSignInRules(), validate, async (req, res) => {
   const { username, password } = req.body;
-
   const user = await User.findOne({ username });
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
-    const followed = await Follower.find({ userId: user._id })
-    const following = await Follower.find({ followerId: user._id })
+    const followed = await Follower.find({ userId: user._id });
+    const following = await Follower.find({ followerId: user._id });
     res.send({
       token,
       user: {

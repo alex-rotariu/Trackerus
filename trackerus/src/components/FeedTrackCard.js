@@ -20,8 +20,9 @@ const INITIAL_REGION = {
   longitudeDelta: LONGITUDE_DELTA
 };
 
-export default TrackCard = (props) => {
-  const { track, mapInitialRegion } = props;
+export default FeedTrackCard = (props) => {
+  const { post, track } = props.post;
+  const { mapInitialRegion } = props;
   const coordinates = track.locations.map((obj) => obj.coords);
   const [mapRef, setMapRef] = useState(null);
   const [cardHeight, setCardHeight] = useState(0);
@@ -37,6 +38,7 @@ export default TrackCard = (props) => {
       setcardWidth(w);
     }
   };
+
   return (
     <View style={styles.shadowStyle}>
       <View
@@ -79,8 +81,8 @@ export default TrackCard = (props) => {
             trackName: track.trackName,
             distance: track.distance,
             createdAt: moment(track.createdAt).fromNow(),
-            username: track.username,
-            profilePic: track.profilePic
+            username: post.username,
+            profilePic: post.profilePic
           }}
         />
       </View>
@@ -133,14 +135,14 @@ const styles = StyleSheet.create({
   }
 });
 
-TrackCard.defaultProps = {
+FeedTrackCard.defaultProps = {
   height: 150,
   listHeight: 85,
   shadowColor: "#ccc",
   borderLeftWidth: 5,
   markerLat: LATITUDE,
   markerLng: LONGITUDE,
-  title: "Testimonial",
+  title: "Track",
   borderColor: "#f54242",
   backgroundColor: "#fff",
   width: width * 0.9,

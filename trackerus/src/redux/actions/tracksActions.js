@@ -23,7 +23,7 @@ export const fetchMyTracks = () => async (dispatch) => {
 export const fetchFeed = () => async (dispatch) => {
   try {
     const response = await api.get("/followers/feed");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: FETCH_FEED_SUCCESS, payload: response.data });
   } catch (err) {
     dispatch({ type: FETCH_FEED_FAIL, payload: response.data });

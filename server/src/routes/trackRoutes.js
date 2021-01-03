@@ -10,26 +10,36 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get("/", async (req, res) => {
-  const tracks = await Track.find({ userId: req.user._id });
-  const promises = tracks.map(async element => {
-    const userDetails = await User.findById({ _id: element.userId }, "-password")
+  const tracks = await Track.find({ userId: req.user._id }).sort({
+    createdAt: -1
+  });
+  const promises = tracks.map(async (element) => {
+    const userDetails = await User.findById(
+      { _id: element.userId },
+      "-password"
+    );
 
-    return { ...userDetails._doc, ...element._doc }
-  })
-  const newTracks = await Promise.all(promises)
+    return { ...userDetails._doc, ...element._doc };
+  });
+  const newTracks = await Promise.all(promises);
   res.send(newTracks);
 });
 
 router.get("/:userId", async (req, res) => {
-  const tracks = await Track.find({ userId: req.params.userId })
-  const promises = tracks.map(async element => {
-    const userDetails = await User.findById({ _id: element.userId }, "-password")
+  const tracks = await Track.find({ userId: req.params.userId }).sort({
+    createdAt: -1
+  });
+  const promises = tracks.map(async (element) => {
+    const userDetails = await User.findById(
+      { _id: element.userId },
+      "-password"
+    );
 
-    return { ...userDetails._doc, ...element._doc }
-  })
-  const newTracks = await Promise.all(promises)
+    return { ...userDetails._doc, ...element._doc };
+  });
+  const newTracks = await Promise.all(promises);
   res.send(newTracks);
-})
+});
 
 router.post("/", async (req, res) => {
   const { _id } = req.user;

@@ -66,7 +66,11 @@ const userSignUpRules = () => {
             }
           })
       ),
-    body("fullName").trim().isAlpha().withMessage("Name must pe alphabetic"),
+    body("fullName")
+      .isLength({ min: 3 })
+      .withMessage("Name must be of 3 characters long.")
+      .matches(/^[A-Za-z\s]+$/)
+      .withMessage("Name must be alphabetic."),
     body("dateOfBirth").custom((value) => {
       if (!moment(value, "DD-MM-YYYY").isValid()) {
         return Promise.reject("Invalid date");
