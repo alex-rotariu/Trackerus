@@ -10,19 +10,29 @@ import {
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 
-import { fetchUserTracks, cleanUserTracks, followUser } from '../../redux/actions/searchActions'
-import SearchTracksList from '../../components/SearchTracksList'
+import {
+  fetchUserTracks,
+  cleanUserTracks,
+  followUser
+} from "../../redux/actions/searchActions";
+import SearchTracksList from "../../components/SearchTracksList";
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const SearchView = ({ cleanUserTracks, fetchUserTracks, followUser, user, tracks, followed }) => {
+const SearchView = ({
+  cleanUserTracks,
+  fetchUserTracks,
+  followUser,
+  user,
+  tracks,
+  followed
+}) => {
   useEffect(() => {
-    if (user._id)
-      fetchUserTracks(user._id)
+    if (user._id) fetchUserTracks(user._id);
     return () => {
-      cleanUserTracks()
-    }
-  }, [])
+      cleanUserTracks();
+    };
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -30,7 +40,7 @@ const SearchView = ({ cleanUserTracks, fetchUserTracks, followUser, user, tracks
           <Text style={styles.name}>{user.fullName ? user.fullName : ""}</Text>
           <Button
             titleStyle={{ fontSize: 12 }}
-            buttonStyle={{ marginLeft: screenWidth * 0.3 }}
+            buttonStyle={{ marginLeft: screenWidth * 0.2, marginRight: 10 }}
             title={followed ? "Stop following" : "Follow"}
             onPress={() => followUser(user._id)}
           />
@@ -100,14 +110,18 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const followExists = user => {
-    return user.followerId === state.search.currentUser._id
-  }
+  const followExists = (user) => {
+    return user.followerId === state.search.currentUser._id;
+  };
   return {
     user: state.search.currentUser,
     tracks: state.search.tracks,
     followed: state.user.user.followed.some(followExists)
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { fetchUserTracks, cleanUserTracks, followUser })(SearchView);
+export default connect(mapStateToProps, {
+  fetchUserTracks,
+  cleanUserTracks,
+  followUser
+})(SearchView);

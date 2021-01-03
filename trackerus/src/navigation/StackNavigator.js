@@ -10,8 +10,6 @@ import Profile from "../screens/ProfileScreen";
 import Home from "../screens/HomeScreen";
 import Feed from "../screens/FeedScreen";
 
-import { signout } from "../redux/actions/userActions";
-
 const Stack = createStackNavigator();
 
 const HomeStackNavigator = () => {

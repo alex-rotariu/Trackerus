@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Text, Button, Input } from "react-native-elements";
-import { StyleSheet, ScrollView, Dimensions, View } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  View,
+  TouchableOpacity
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { connect } from "react-redux";
 
@@ -16,7 +22,7 @@ const SignInForm = ({ signin }) => {
     <SafeAreaView style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.inputs}>
-          <Text style={styles.title}>Sign in</Text>
+          <Text style={styles.title}>Sign In</Text>
           <Input
             autoCapitalize="none"
             autoCorrect={false}
@@ -36,7 +42,12 @@ const SignInForm = ({ signin }) => {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null} */}
           <Spacer>
-            <Button title="Sign In" onPress={() => signin(values)} />
+            <TouchableOpacity
+              onPress={() => signin(values)}
+              style={styles.button}
+            >
+              <Text style={styles.text}>Sign In</Text>
+            </TouchableOpacity>
           </Spacer>
         </View>
       </ScrollView>
@@ -45,6 +56,25 @@ const SignInForm = ({ signin }) => {
 };
 
 const styles = StyleSheet.create({
+  button: {
+    display: "flex",
+    height: Dimensions.get("window").width * 0.1,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+
+    backgroundColor: "#2C8E3E",
+    shadowColor: "#2AC062",
+    shadowOpacity: 0.4,
+    shadowOffset: { height: 10, width: 0 },
+    shadowRadius: 20
+  },
+  text: {
+    fontSize: 16,
+    textTransform: "uppercase",
+    color: "#FFFFFF",
+    fontWeight: "bold"
+  },
   scrollView: {
     width: Dimensions.get("window").width * 0.7,
     height: Dimensions.get("window").height * 0.7

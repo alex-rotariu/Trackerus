@@ -5,7 +5,8 @@ import {
   Platform,
   View,
   ScrollView,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { connect } from "react-redux";
@@ -35,7 +36,7 @@ const SignUpForm = ({ signup }) => {
         }}
       >
         <View style={styles.inputs}>
-          <Text style={styles.title}>Sign up</Text>
+          <Text style={styles.title}>Sign Up</Text>
           <Input
             autoCapitalize="none"
             autoCorrect={false}
@@ -66,7 +67,30 @@ const SignUpForm = ({ signup }) => {
               />
             </View>
             <View style={styles.dateButton}>
-              <Button onPress={() => setShow(true)} title="Pick date" />
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0)",
+                  borderRadius: 4,
+                  borderWidth: 2,
+                  borderColor: "#2C8E3E"
+                }}
+                underlayColor="#fff"
+                onPress={() => setShow(true)}
+                title="Pick date"
+              >
+                <Text
+                  style={{
+                    color: "#2C8E3E",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    fontSize: 20,
+                    paddingLeft: 10,
+                    paddingRight: 10
+                  }}
+                >
+                  Pick date
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           {show && (
@@ -103,15 +127,12 @@ const SignUpForm = ({ signup }) => {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null} */}
           <Spacer>
-            <Button
-              title="Sign Up!"
-              onPress={() =>
-                signup({
-                  ...values,
-                  dateOfBirth: moment(values.dateOfBirth).format("DD-MM-YYYY")
-                })
-              }
-            />
+            <TouchableOpacity
+              onPress={() => signin(values)}
+              style={styles.button}
+            >
+              <Text style={styles.text}>Sign Up</Text>
+            </TouchableOpacity>
           </Spacer>
         </View>
       </ScrollView>
@@ -120,6 +141,25 @@ const SignUpForm = ({ signup }) => {
 };
 
 const styles = StyleSheet.create({
+  button: {
+    display: "flex",
+    height: Dimensions.get("window").width * 0.1,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+
+    backgroundColor: "#2C8E3E",
+    shadowColor: "#2AC062",
+    shadowOpacity: 0.4,
+    shadowOffset: { height: 10, width: 0 },
+    shadowRadius: 20
+  },
+  text: {
+    fontSize: 16,
+    textTransform: "uppercase",
+    color: "#FFFFFF",
+    fontWeight: "bold"
+  },
   title: {
     fontSize: 32,
     fontWeight: "bold",
@@ -145,7 +185,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   dateInput: { flex: 1 },
-  dateButton: { flex: 1, margin: 10 },
+  dateButton: { flex: 1, margin: 16 },
   errorMessage: {
     fontSize: 16,
     color: "red",

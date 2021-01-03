@@ -3,8 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { connect } from "react-redux";
 
 import AppLoadingScreen from "../screens/AppLoadingScreen";
-import AppStack from "./AppNavigator";
 import AuthStack from "./AuthNavigator";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 const RootStack = createStackNavigator();
 
@@ -15,7 +15,7 @@ function RootStackScreen({ isLoggedIn }) {
         <RootStack.Screen
           options={{ headerShown: false }}
           name="Authenticated"
-          component={AppStack}
+          component={BottomTabNavigator}
         />
       ) : (
         <RootStack.Screen
