@@ -45,7 +45,9 @@ const RecordCreateScreen = ({ addLocation, recording, navigation }) => {
           style={{ flex: 1 }}
         >
           <SafeAreaView forceInset={{ top: "always" }}>
-            <Text h3>Create a track</Text>
+            <Text style={{ textAlign: "center" }} h3>
+              Create a track
+            </Text>
 
             <Map />
             {error ? <Text>Please enable location services</Text> : null}

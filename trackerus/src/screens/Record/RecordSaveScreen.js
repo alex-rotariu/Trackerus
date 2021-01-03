@@ -28,7 +28,9 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
           style={{ flex: 1 }}
         >
           <SafeAreaView forceInset={{ top: "always" }}>
-            <Text h3>Save your record</Text>
+            <Text style={{ textAlign: "center" }} h3>
+              Save your record
+            </Text>
             <Map view={true} />
             <Spacer>
               <Text>{trackName}</Text>
