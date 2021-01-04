@@ -35,7 +35,9 @@ export default TrackCardDetails = ({ props }) => {
       <Text style={styles.textStyle}>
         {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100} kilometers
       </Text>
-      <LikeButton />
+      <View style={{ alignSelf: "center" }}>
+        <LikeButton />
+      </View>
     </View>
   );
 };

@@ -1,18 +1,21 @@
 import React from "react";
-import { TouchableHighlight, View, StyleSheet } from "react-native";
+import { TouchableOpacity, View, StyleSheet, Text, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
-export function LikeButton({ color, size, onPress }) {
+export default function LikeButton() {
   return (
-    <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={0.5}>
-      <Image
+    <TouchableOpacity onPress={() => console.log("pressed")}>
+      {/* <Image
         source={require("../../assets/icon.png")}
         style={styles.ImageIconStyle}
       />
 
-      <View style={styles.SeparatorLine} />
+      <View style={styles.SeparatorLine} /> */}
 
-      <Text style={styles.TextStyle}> Login Using Google Plus </Text>
+      <Image
+        source={require("../../assets/heartFull.png")}
+        style={styles.ImageIconStyle}
+      />
     </TouchableOpacity>
   );
 }
