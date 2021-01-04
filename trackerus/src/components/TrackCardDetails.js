@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from "react";
 import { Text, View, Dimensions, StyleSheet, Image } from "react-native";
 
+import LikeButton from "./LikeButton";
+
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
@@ -33,6 +35,7 @@ export default TrackCardDetails = ({ props }) => {
       <Text style={styles.textStyle}>
         {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100} kilometers
       </Text>
+      <LikeButton />
     </View>
   );
 };

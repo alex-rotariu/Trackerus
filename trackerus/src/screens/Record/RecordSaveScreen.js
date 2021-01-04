@@ -10,15 +10,10 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-import { Button } from "react-native-elements";
 
 import Map from "../../components/Map";
 import Spacer from "../../components/Spacer";
-import useCalculateDistance from "../../hooks/useCalculateDistance";
 import { saveTrack } from "../../redux/actions/locationActions";
-// TODO
-// And add form for save
-// Complete server upload
 
 const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
   return (

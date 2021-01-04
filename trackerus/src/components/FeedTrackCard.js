@@ -40,14 +40,14 @@ export default FeedTrackCard = (props) => {
   };
 
   return (
-    <View style={styles.shadowStyle}>
-      <View
-        style={styles.container}
-        onLayout={(event) => {
-          var { width, height } = event.nativeEvent.layout;
-          findDimensions(height, width);
-        }}
-      >
+    <View
+      style={styles.shadowStyle}
+      onLayout={(event) => {
+        var { width, height } = event.nativeEvent.layout;
+        findDimensions(height, width);
+      }}
+    >
+      <View style={styles.container}>
         <View style={styles.mapContainer}>
           <MapView
             ref={(ref) => {
