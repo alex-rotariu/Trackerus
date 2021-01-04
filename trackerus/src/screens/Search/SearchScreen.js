@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { SearchBar, ListItem, Avatar } from "react-native-elements";
-import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  Dimensions
+} from "react-native";
 import { connect } from "react-redux";
 
-import { fetchUsers, setCurrentUser } from "../../redux/actions/searchActions";
+import {
+  fetchUsers,
+  setCurrentUser,
+  clearUsers
+} from "../../redux/actions/searchActions";
 
 const renderSeparator = () => {
   return (
@@ -17,7 +28,13 @@ const renderSeparator = () => {
   );
 };
 
-const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
+const SearchScreen = ({
+  navigation,
+  fetchUsers,
+  setCurrentUser,
+  users,
+  clearUsers
+}) => {
   const [name, setText] = useState("");
 
   const searchFilterFunction = (text) => {
@@ -25,9 +42,7 @@ const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
       fetchUsers(text);
       setText(text);
     } else {
-      // // Inserted text is blank
-      // // Update FilteredDataSource with masterDataSource
-      // setFilteredDataSource(masterDataSource);
+      clearUsers();
       setText(text);
     }
   };
@@ -38,10 +53,13 @@ const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
         <FlatList
           data={users}
           renderItem={({ item }) => (
-            <ListItem bottomDivider onPress={() => {
-              setCurrentUser(item)
-              navigation.navigate("SearchView")
-            }}>
+            <ListItem
+              bottomDivider
+              onPress={() => {
+                setCurrentUser(item);
+                navigation.navigate("SearchView");
+              }}
+            >
               {/* {item.profilePic && ( */}
               <Avatar
                 rounded
@@ -61,6 +79,28 @@ const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
           )}
           keyExtractor={(item) => item.email}
           ItemSeparatorComponent={renderSeparator}
+          ListEmptyComponent={
+            <View
+              style={{
+                alignItems: "center",
+                flex: 1,
+                justifyContent: "space-around",
+                marginVertical: Dimensions.get("window").height * 0.25
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  marginBottom: Dimensions.get("window").height * 0.2,
+                  fontSize: 28,
+                  color: "black",
+                  fontWeight: "bold"
+                }}
+              >
+                No users to display...
+              </Text>
+            </View>
+          }
           ListHeaderComponent={
             <SearchBar
               placeholder="Type Here..."
@@ -72,6 +112,8 @@ const SearchScreen = ({ navigation, fetchUsers, setCurrentUser, users }) => {
               onClear={(text) => searchFilterFunction(text)}
               autoCorrect={false}
               value={name}
+              autoCapitalize="none"
+              showLoading
             />
           }
         />
@@ -92,4 +134,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers, setCurrentUser })(SearchScreen);
+export default connect(mapStateToProps, {
+  fetchUsers,
+  setCurrentUser,
+  clearUsers
+})(SearchScreen);

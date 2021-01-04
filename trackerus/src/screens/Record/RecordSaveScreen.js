@@ -7,7 +7,8 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 import { Button } from "react-native-elements";
 
@@ -33,15 +34,20 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
             </Text>
             <Map view={true} />
             <Spacer>
-              <Text>{trackName}</Text>
-              <Text>
-                {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100}
-                km
-              </Text>
-              <Button
-                title="Save track"
-                onPress={() => saveTrack(navigation)}
-              />
+              <View style={styles.details}>
+                <Text style={styles.textName}>{trackName}</Text>
+                <Text style={styles.textDistance}>
+                  {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100}
+                  km
+                </Text>
+
+                <TouchableOpacity
+                  onPress={() => saveTrack(navigation)}
+                  style={styles.button}
+                >
+                  <Text style={styles.textButton}>Save Track</Text>
+                </TouchableOpacity>
+              </View>
             </Spacer>
           </SafeAreaView>
         </KeyboardAvoidingView>
@@ -51,6 +57,40 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
 };
 
 const styles = StyleSheet.create({
+  details: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-around"
+  },
+  textName: {
+    fontSize: 36,
+    fontWeight: "bold"
+  },
+  textDistance: {
+    marginTop: 4,
+    fontSize: 22
+  },
+  button: {
+    display: "flex",
+    height: Dimensions.get("window").width * 0.1,
+    width: Dimensions.get("window").width * 0.4,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 16,
+
+    backgroundColor: "#rgba(44, 142, 62, 1)",
+    shadowColor: "#2AC062",
+    shadowOpacity: 0.4,
+    shadowOffset: { height: 10, width: 0 },
+    shadowRadius: 20
+  },
+  textButton: {
+    fontSize: 22,
+    textTransform: "uppercase",
+    color: "white",
+    fontWeight: "bold"
+  },
   wrapper: {
     alignContent: "center",
     alignSelf: "center",

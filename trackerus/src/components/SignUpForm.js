@@ -128,7 +128,7 @@ const SignUpForm = ({ signup }) => {
       ) : null} */}
           <Spacer>
             <TouchableOpacity
-              onPress={() => signin(values)}
+              onPress={() => signup(values)}
               style={styles.button}
             >
               <Text style={styles.text}>Sign Up</Text>

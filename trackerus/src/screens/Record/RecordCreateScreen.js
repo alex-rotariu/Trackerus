@@ -19,15 +19,15 @@ import RecordCreateForm from "../../components/RecordCreateForm";
 const RecordCreateScreen = ({ addLocation, recording, navigation }) => {
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
-    const unsubscribe1 = navigation.addListener("focus", () => {
+    const onFocus = navigation.addListener("focus", () => {
       setIsFocused(true);
     });
-    const unsubscribe2 = navigation.addListener("blur", () => {
+    const onBlur = navigation.addListener("blur", () => {
       setIsFocused(false);
     });
     return function cleanup() {
-      unsubscribe1();
-      unsubscribe2();
+      onFocus();
+      onBlur();
     };
   }, []);
   const callback = useCallback(
