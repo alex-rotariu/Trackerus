@@ -18,12 +18,17 @@ import { saveTrack } from "../../redux/actions/locationActions";
 const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
   return (
     <View style={styles.wrapper}>
-      <ScrollView style={{ width: Dimensions.get("window").width * 0.9 }}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "position"}
-          style={{ flex: 1 }}
+      <SafeAreaView forceInset={{ top: "always" }}>
+        <ScrollView
+          style={{
+            width: Dimensions.get("window").width * 0.9,
+            marginBottom: Dimensions.get("window").height * 0.025
+          }}
         >
-          <SafeAreaView forceInset={{ top: "always" }}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "position"}
+            style={{ flex: 1 }}
+          >
             <Text style={{ textAlign: "center" }} h3>
               Save your record
             </Text>
@@ -44,9 +49,9 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
                 </TouchableOpacity>
               </View>
             </Spacer>
-          </SafeAreaView>
-        </KeyboardAvoidingView>
-      </ScrollView>
+          </KeyboardAvoidingView>
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 };

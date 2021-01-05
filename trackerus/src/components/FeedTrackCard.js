@@ -78,11 +78,14 @@ export default FeedTrackCard = (props) => {
         </View>
         <TrackCardDetails
           props={{
+            _id: track._id,
             trackName: track.trackName,
             distance: track.distance,
             createdAt: moment(track.createdAt).fromNow(),
             username: post.username,
-            profilePic: post.profilePic
+            profilePic: post.profilePic,
+            userId: post._id,
+            likes: track.likes
           }}
         />
       </View>

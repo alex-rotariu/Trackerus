@@ -2,20 +2,21 @@ import React from "react";
 import { TouchableOpacity, View, StyleSheet, Text, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
-export default function LikeButton() {
+export default function LikeButton({ liked, callback }) {
+  console.log(liked);
   return (
-    <TouchableOpacity onPress={() => console.log("pressed")}>
-      {/* <Image
-        source={require("../../assets/icon.png")}
-        style={styles.ImageIconStyle}
-      />
-
-      <View style={styles.SeparatorLine} /> */}
-
-      <Image
-        source={require("../../assets/heartFull.png")}
-        style={styles.ImageIconStyle}
-      />
+    <TouchableOpacity onPress={callback}>
+      {liked ? (
+        <Image
+          source={require("../../assets/heartFull.png")}
+          style={styles.ImageIconStyle}
+        />
+      ) : (
+        <Image
+          source={require("../../assets/heartEmpty.png")}
+          style={styles.ImageIconStyle}
+        />
+      )}
     </TouchableOpacity>
   );
 }

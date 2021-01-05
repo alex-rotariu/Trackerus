@@ -30,7 +30,7 @@ export default (state = null, action) => {
       return { ...state, distance: action.payload };
     }
     case DISCARD_RECORDING: {
-      return { ...state, locations: [] };
+      return { ...state, locations: [], trackName: "", recording: false };
     }
     case SAVE_TRACK_SUCCESS: {
       return { ...state, distance: 0, locations: [], trackName: "" };

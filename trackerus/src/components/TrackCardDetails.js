@@ -1,14 +1,18 @@
 import React, { useReducer, useState } from "react";
 import { Text, View, Dimensions, StyleSheet, Image } from "react-native";
+import { connect } from "react-redux";
 
 import LikeButton from "./LikeButton";
+
+import { likeTrack } from "../redux/actions/tracksActions";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-export default TrackCardDetails = ({ props }) => {
-  const { trackName, distance, createdAt } = props;
-  const { profilePic, username } = props;
+const TrackCardDetails = ({ props, currentUser, likeTrack }) => {
+  const { _id, trackName, distance, createdAt } = props;
+  const { profilePic, username, userId, likes } = props;
+  console.log(likes);
   return (
     <View style={styles.container}>
       <View style={styles.userDetails}>
@@ -33,10 +37,26 @@ export default TrackCardDetails = ({ props }) => {
       />
       <Text style={styles.titleStyle}>{trackName}</Text>
       <Text style={styles.textStyle}>
-        {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100} kilometers
+        {Math.round((distance / 1000 + Number.EPSILON) * 100) / 100} kilometers{" "}
       </Text>
-      <View style={{ alignSelf: "center" }}>
-        <LikeButton />
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          alignSelf: "center",
+          marginTop: 4
+        }}
+      >
+        {currentUser.user._id === userId ? (
+          <></>
+        ) : likes.some((el) => el._id === currentUser.user._id) ? (
+          <LikeButton liked={true} callback={() => likeTrack(_id)} />
+        ) : (
+          <LikeButton liked={false} callback={() => likeTrack(_id)} />
+        )}
+        <View style={{ alignSelf: "center" }}>
+          <Text> {likes.length} likes</Text>
+        </View>
       </View>
     </View>
   );
@@ -88,3 +108,11 @@ const styles = StyleSheet.create({
     fontSize: 10
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.user
+  };
+};
+
+export default connect(mapStateToProps, { likeTrack })(TrackCardDetails);

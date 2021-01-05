@@ -19,7 +19,11 @@ router.get("/", async (req, res) => {
       "-password"
     );
 
-    return { ...userDetails._doc, ...element._doc };
+    return {
+      ...userDetails._doc,
+      ...element._doc,
+      userId: userDetails._doc._id
+    };
   });
   const newTracks = await Promise.all(promises);
   res.send(newTracks);
@@ -59,6 +63,28 @@ router.post("/", async (req, res) => {
     const user = await User.findById(_id);
     user.trackCount = user.trackCount + 1;
     await user.save();
+    res.send({ track });
+  } catch (err) {
+    console.log(err);
+    res.status(422).send({ error: err.message });
+  }
+});
+
+router.post("/like", async (req, res) => {
+  const { _id } = req.user;
+  const { trackId } = req.body;
+  try {
+    const track = await Track.findById({ _id: trackId });
+    if (track) {
+      const index = track.likes.indexOf(_id);
+      if (index > -1) {
+        track.likes.splice(index, 1);
+        await track.save();
+      } else {
+        track.likes.push(_id);
+        await track.save();
+      }
+    }
     res.send({ track });
   } catch (err) {
     console.log(err);
