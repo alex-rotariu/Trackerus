@@ -12,7 +12,7 @@ const screenWidth = Dimensions.get("window").width;
 const TrackCardDetails = ({ props, currentUser, likeTrack }) => {
   const { _id, trackName, distance, createdAt } = props;
   const { profilePic, username, userId, likes } = props;
-  console.log(likes);
+  // console.log(likes);
   return (
     <View style={styles.container}>
       <View style={styles.userDetails}>
@@ -49,7 +49,7 @@ const TrackCardDetails = ({ props, currentUser, likeTrack }) => {
       >
         {currentUser.user._id === userId ? (
           <></>
-        ) : likes.some((el) => el._id === currentUser.user._id) ? (
+        ) : likes.some((el) => el.userId === currentUser.user._id) ? (
           <LikeButton liked={true} callback={() => likeTrack(_id)} />
         ) : (
           <LikeButton liked={false} callback={() => likeTrack(_id)} />

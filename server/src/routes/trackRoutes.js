@@ -76,16 +76,22 @@ router.post("/like", async (req, res) => {
   try {
     const track = await Track.findById({ _id: trackId });
     if (track) {
-      const index = track.likes.indexOf(_id);
-      if (index > -1) {
-        track.likes.splice(index, 1);
-        await track.save();
-      } else {
-        track.likes.push(_id);
-        await track.save();
+      let liked = false;
+      newLikes = [];
+      track.likes.forEach((element) => {
+        if (String(element.userId) !== String(_id)) {
+          newLikes.push(element);
+        } else {
+          liked = true;
+        }
+      });
+      if (!liked) {
+        newLikes.push({ userId: _id });
       }
+      track.likes = newLikes;
+      await track.save();
+      res.send({ track });
     }
-    res.send({ track });
   } catch (err) {
     console.log(err);
     res.status(422).send({ error: err.message });

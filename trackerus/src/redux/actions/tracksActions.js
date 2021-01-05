@@ -7,7 +7,8 @@ import {
   FETCH_FEED_FAIL,
   FETCH_TRACK_SUCCESS,
   FETCH_TRACK_FAIL,
-  TRACK_LIKE_FAIL
+  TRACK_LIKE_FAIL,
+  TRACK_LIKE_SUCCESS
 } from "../types";
 
 import api from "../../api/axiosConfig";
@@ -27,16 +28,17 @@ export const fetchFeed = () => async (dispatch) => {
     // console.log(response.data);
     dispatch({ type: FETCH_FEED_SUCCESS, payload: response.data });
   } catch (err) {
-    dispatch({ type: FETCH_FEED_FAIL, payload: response.data });
+    dispatch({ type: FETCH_FEED_FAIL });
   }
 };
 
 export const likeTrack = (trackId) => async (dispatch) => {
-  console.log(trackId);
+  // console.log(trackId);
   try {
     const response = await api.post("/tracks/like", { trackId: trackId });
-    console.log(response.data);
+    dispatch({ type: TRACK_LIKE_SUCCESS, payload: response.data });
   } catch (err) {
+    console.log(err);
     dispatch({ type: TRACK_LIKE_FAIL });
   }
 };

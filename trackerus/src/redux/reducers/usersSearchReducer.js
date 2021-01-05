@@ -8,7 +8,9 @@ import {
   FETCH_USER_TRACKS_REQUEST,
   CLEAN_USER_TRACKS,
   FOLLOW_USER,
-  CLEAR_USERS
+  CLEAR_USERS,
+  TRACK_LIKE_SUCCESS,
+  TRACK_LIKE_FAIL
 } from "../types";
 
 export default (
@@ -17,6 +19,17 @@ export default (
 ) => {
   // Remain here. for loop on state.users in order to modify counts
   switch (action.type) {
+    case TRACK_LIKE_SUCCESS: {
+      updatedTacks = state.tracks.map((track) => {
+        if (track._id === action.payload.track._id)
+          return { ...track, likes: action.payload.track.likes };
+        else return track;
+      });
+      return { ...state, tracks: updatedTacks };
+    }
+    case TRACK_LIKE_FAIL: {
+      return state;
+    }
     case FOLLOW_USER:
       updatedUsers = state.users.map((user) => {
         if (user._id !== action.payload.follower.followerId) {

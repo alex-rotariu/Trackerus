@@ -10,7 +10,7 @@ router.use(requireAuth);
 
 router.get("/feed", async (req, res) => {
   requesterId = req.user._id;
-  console.log(requesterId);
+  // console.log(requesterId);
   try {
     followersList = await Follower.find(
       {
