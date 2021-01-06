@@ -39,8 +39,19 @@ const SearchView = ({
         <View style={styles.headerContent}>
           <Text style={styles.name}>{user.fullName ? user.fullName : ""}</Text>
           <Button
-            titleStyle={{ fontSize: 12 }}
-            buttonStyle={{ marginLeft: screenWidth * 0.2, marginRight: 10 }}
+            titleStyle={{
+              fontSize: 14,
+              fontWeight: "bold",
+              color: followed ? "#000" : "#fff"
+            }}
+            buttonStyle={{
+              width: screenWidth * 0.28,
+              marginLeft: screenWidth * 0.2,
+              // marginRight: 10,
+              backgroundColor: followed ? "#fff" : "#0E6E23",
+              borderWidth: 1,
+              borderColor: followed ? "#000" : "#fff"
+            }}
             title={followed ? "Stop following" : "Follow"}
             onPress={() => followUser(user._id)}
           />
@@ -104,8 +115,8 @@ const styles = StyleSheet.create({
     marginTop: screenHeight * 0.075
   },
   container: {
-    flex: 1,
-    marginBottom: 50
+    flex: 1
+    // marginBottom: 50
   }
 });
 

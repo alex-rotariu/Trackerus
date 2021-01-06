@@ -24,7 +24,7 @@ const RecordCreateModal = ({ errors, modalVisible, setModalVisible }) => {
           <Text style={styles.modalText}>{errors}</Text>
 
           <TouchableHighlight
-            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+            style={{ ...styles.openButton, backgroundColor: "#2C8E3E" }}
             onPress={() => {
               setModalVisible(!modalVisible);
             }}

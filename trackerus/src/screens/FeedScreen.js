@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "center",
-    marginBottom: 50
+    justifyContent: "center"
+    // marginBottom: 50
   },
   trackList: {
     // flex: 1
-    paddingVertical: screenHeight * 0.005,
-    marginBottom: screenHeight * 0.055
+    paddingTop: screenHeight * 0.005
+    // marginBottom: screenHeight * 0.055
   }
 });
 

@@ -78,13 +78,21 @@ const RecordCreateForm = ({
 
       {recording ? (
         <Spacer>
-          <Button title="Stop recording" onPress={stopRecording} />
+          <Button
+            buttonStyle={styles.stopButton}
+            title="Stop recording"
+            onPress={stopRecording}
+          />
         </Spacer>
       ) : null}
 
       {!recording && locations.length === 0 ? (
         <Spacer>
-          <Button title="Start Recording" onPress={startRecording} />
+          <Button
+            buttonStyle={styles.startButton}
+            title="Start Recording"
+            onPress={startRecording}
+          />
         </Spacer>
       ) : null}
     </View>
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
     height: 25
   },
   body: {
-    marginBottom: Dimensions.get("window").height * 0.05
+    // marginBottom: Dimensions.get("window").height * 0.05
   },
   resumeButton: {
     backgroundColor: "#4AAE5A"
@@ -105,6 +113,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#0E6E23"
   },
   deleteButton: {
+    backgroundColor: "#f33"
+  },
+  startButton: {
+    backgroundColor: "#0E6E23"
+  },
+  stopButton: {
     backgroundColor: "#f33"
   }
 });

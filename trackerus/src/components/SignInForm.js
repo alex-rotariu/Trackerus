@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   inputs: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    marginBottom: Dimensions.get("window").height * 0.1
+    justifyContent: "center"
+    // marginBottom: Dimensions.get("window").height * 0.1
   },
   errorMessage: {
     fontSize: 16,

@@ -98,6 +98,12 @@ const SignUpForm = ({ signup }) => {
               value={values.dateOfBirth}
               mode="date"
               display="default"
+              style={{
+                shadowColor: "#fff",
+                shadowRadius: 0,
+                shadowOpacity: 1,
+                shadowOffset: { height: 0, width: 0 }
+              }}
               onChange={(event, selectedDate) => {
                 const currentDate = selectedDate || values.dateOfBirth;
                 setShow(Platform.OS === "ios");
@@ -169,8 +175,8 @@ const styles = StyleSheet.create({
   inputs: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    marginBottom: Dimensions.get("window").height * 0.1
+    justifyContent: "center"
+    // marginBottom: Dimensions.get("window").height * 0.1
   },
   wrapper: {
     flex: 1,

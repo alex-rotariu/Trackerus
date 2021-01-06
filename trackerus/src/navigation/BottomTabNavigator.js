@@ -15,42 +15,63 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          switch (route.name) {
-            case "Home":
-              iconName = "home";
-              break;
-            case "Feed":
-              iconName = "newspaper";
-              break;
-            case "Record":
-              iconName = "map-marker";
-              break;
-            case "Search":
-              iconName = "magnify";
-              break;
-            case "Profile":
-              iconName = "account";
-              break;
-          }
-          if (iconName)
-            return <Icon name={iconName} size={size} color={color} />;
-        }
-      })}
       tabBarOptions={{
-        keyboardHidesTabBar: true,
-        style: {
-          position: "absolute"
-        }
+        activeTintColor: "#0E6E23",
+        activeBackgroundColor: "#CCFFE5",
+        inactiveBackgroundColor: "#fff",
+        keyboardHidesTabBar: true
       }}
     >
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Feed" component={FeedStackNavigator} />
-      <Tab.Screen name="Record" component={RecordStackNavigator} />
-      <Tab.Screen name="Search" component={SearchStackNavigator} />
-      <Tab.Screen name="Profile" component={ProfileStackNavigator} />
+      <Tab.Screen
+        name="Home"
+        component={HomeStackNavigator}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Feed"
+        component={FeedStackNavigator}
+        options={{
+          tabBarLabel: "Feed",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="newspaper" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Record"
+        component={RecordStackNavigator}
+        options={{
+          tabBarLabel: "Record",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="map-marker" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchStackNavigator}
+        options={{
+          tabBarLabel: "Search",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="magnify" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStackNavigator}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="account" size={size} color={color} />
+          )
+        }}
+      />
     </Tab.Navigator>
   );
 };

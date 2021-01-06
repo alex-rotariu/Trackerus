@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
-    alignItems: "center",
-    marginBottom: 50
+    alignItems: "center"
+    // marginBottom: 50
   }
 });
 

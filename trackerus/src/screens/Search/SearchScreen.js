@@ -20,9 +20,9 @@ const renderSeparator = () => {
   return (
     <View
       style={{
-        height: 1,
+        height: 2,
         width: "100%",
-        backgroundColor: "#000"
+        backgroundColor: "#0E6E23"
       }}
     />
   );
@@ -93,7 +93,7 @@ const SearchScreen = ({
                   textAlign: "center",
                   marginBottom: Dimensions.get("window").height * 0.2,
                   fontSize: 28,
-                  color: "black",
+                  color: "#0E6E23",
                   fontWeight: "bold"
                 }}
               >
@@ -114,6 +114,8 @@ const SearchScreen = ({
               value={name}
               autoCapitalize="none"
               showLoading
+              round
+              lightTheme
             />
           }
         />

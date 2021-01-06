@@ -31,8 +31,17 @@ const ProfileScreen = ({
     navigation.setOptions({
       headerRight: () => (
         <Button
-          buttonStyle={{ width: 100, marginHorizontal: screenWidth * 0.05 }}
+          buttonStyle={{
+            width: 100,
+            marginHorizontal: screenWidth * 0.05,
+            color: "#000"
+          }}
           title="Sign Out"
+          titleStyle={{
+            fontSize: 18,
+            fontWeight: "800",
+            color: "#000"
+          }}
           type="outline"
           onPress={signout}
         />
@@ -62,16 +71,23 @@ const ProfileScreen = ({
       setProfilePic(result);
     }
   };
-
+  console.log(profilePic);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.name}>{user.fullName ? user.fullName : ""}</Text>
           <Button
-            titleStyle={{ fontSize: 12 }}
-            buttonStyle={{ marginLeft: screenWidth * 0.3 }}
-            title={profilePic ? "Change image" : "Pick image"}
+            titleStyle={{ fontSize: 14 }}
+            buttonStyle={{
+              width: screenWidth * 0.28,
+              marginLeft: screenWidth * 0.2,
+              // marginRight: 10,
+              backgroundColor: "#0E6E23",
+              borderWidth: 1,
+              borderColor: "#fff"
+            }}
+            title={profilePic.base64 ? "Change image" : "Pick image"}
             onPress={pickImage}
           />
         </View>
@@ -104,7 +120,9 @@ const styles = StyleSheet.create({
   },
   headerContent: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    marginBottom: screenHeight * 0.05,
+    marginLeft: screenWidth * 0.05
   },
   name: {
     fontSize: 24,
@@ -132,8 +150,8 @@ const styles = StyleSheet.create({
     marginTop: screenHeight * 0.075
   },
   container: {
-    flex: 1,
-    marginBottom: 50
+    flex: 1
+    // marginBottom: 50
   }
 });
 
