@@ -1,5 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  KeyboardAvoidingView
+} from "react-native";
 import { Text, Button } from "react-native-elements";
 
 import Spacer from "../components/Spacer";
@@ -47,13 +53,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   bottomLink: {
+    marginTop: 20,
     alignSelf: "center"
   },
   container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    marginVertical: Dimensions.get("window").width * 0.1
+    marginVertical: Dimensions.get("window").width * 0.2
   }
 });
 

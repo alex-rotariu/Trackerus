@@ -3,7 +3,6 @@ import { TouchableOpacity, View, StyleSheet, Text, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 export default function LikeButton({ liked, callback }) {
-  // console.log(liked);
   return (
     <TouchableOpacity onPress={callback}>
       {liked ? (

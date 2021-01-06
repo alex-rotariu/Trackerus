@@ -32,7 +32,7 @@ const HomeScreen = ({ user, navigation }) => {
           h4
           style={{ color: "#0E6E23", textAlign: "center", fontWeight: "bold" }}
         >
-          ...or check what your friend have been doing...
+          ...or check what your friends have been doing...
         </Text>
         <TouchableOpacity
           onPress={() => {
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center"
-    // marginBottom: 50
   }
 });
 

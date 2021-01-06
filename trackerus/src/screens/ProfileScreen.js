@@ -26,7 +26,6 @@ const ProfileScreen = ({
   user: { user }
 }) => {
   const [profilePic, setProfilePic] = useState(user.profilePic);
-  // console.log(user);
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -71,7 +70,6 @@ const ProfileScreen = ({
       setProfilePic(result);
     }
   };
-  console.log(profilePic);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -82,7 +80,6 @@ const ProfileScreen = ({
             buttonStyle={{
               width: screenWidth * 0.28,
               marginLeft: screenWidth * 0.2,
-              // marginRight: 10,
               backgroundColor: "#0E6E23",
               borderWidth: 1,
               borderColor: "#fff"
@@ -106,7 +103,6 @@ const ProfileScreen = ({
         }}
       />
       <SafeAreaView style={styles.trackList}>
-        {/* <Text style={{ fontSize: 16, textAlign: "center", marginVertical: screenHeight * 0.025 }}>Your Tracks</Text> */}
         <ProfileTracksList />
       </SafeAreaView>
     </View>
@@ -130,8 +126,6 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
   info: { fontSize: 24, color: "#696969", textAlign: "right" },
-  // body: { marginTop: 40 },
-  // bodyContent: { flex: 1, alignItems: "center", padding: 30 },
   header: {
     backgroundColor: "#85ED90",
     height: screenHeight * 0.15,
@@ -151,7 +145,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
-    // marginBottom: 50
   }
 });
 

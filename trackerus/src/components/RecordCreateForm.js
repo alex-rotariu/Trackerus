@@ -103,9 +103,7 @@ const styles = StyleSheet.create({
   input: {
     height: 25
   },
-  body: {
-    // marginBottom: Dimensions.get("window").height * 0.05
-  },
+  body: {},
   resumeButton: {
     backgroundColor: "#4AAE5A"
   },

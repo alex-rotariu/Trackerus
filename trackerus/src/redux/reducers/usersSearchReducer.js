@@ -17,7 +17,6 @@ export default (
   state = { currentUser: null, users: [], tracks: [] },
   action
 ) => {
-  // Remain here. for loop on state.users in order to modify counts
   switch (action.type) {
     case TRACK_LIKE_SUCCESS: {
       updatedTacks = state.tracks.map((track) => {

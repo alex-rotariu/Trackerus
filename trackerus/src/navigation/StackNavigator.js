@@ -49,20 +49,7 @@ const SearchStackNavigator = () => {
 const ProfileStackNavigator = ({ signout }) => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Profile"
-        // options={{
-        //   headerRight: () => (
-        //     <Button
-        //       buttonStyle={{ width: 100 }}
-        //       title="Sign Out"
-        //       type="outline"
-        //       onPress={signout}
-        //     />
-        //   )
-        // }}
-        component={Profile}
-      />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };

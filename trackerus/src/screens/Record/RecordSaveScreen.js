@@ -22,7 +22,6 @@ const RecordSaveScreen = ({ navigation, saveTrack, trackName, distance }) => {
         <ScrollView
           style={{
             width: Dimensions.get("window").width * 0.9
-            // marginBottom: Dimensions.get("window").height * 0.025
           }}
         >
           <KeyboardAvoidingView

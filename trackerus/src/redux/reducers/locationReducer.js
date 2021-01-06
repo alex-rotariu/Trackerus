@@ -11,7 +11,6 @@ import {
 } from "../types";
 
 export default (state = null, action) => {
-  // console.log(action);
   switch (action.type) {
     case ADD_CURRENT_LOCATION:
       return { ...state, currentLocation: action.payload };

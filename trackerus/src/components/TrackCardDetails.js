@@ -12,7 +12,6 @@ const screenWidth = Dimensions.get("window").width;
 const TrackCardDetails = ({ props, currentUser, likeTrack }) => {
   const { _id, trackName, distance, createdAt } = props;
   const { profilePic, username, userId, likes } = props;
-  // console.log(likes);
   return (
     <View style={styles.container}>
       <View style={styles.userDetails}>
@@ -20,7 +19,6 @@ const TrackCardDetails = ({ props, currentUser, likeTrack }) => {
           <Image
             size={32}
             source={{ uri: `data:image/gif;base64,${profilePic.base64}` }}
-            // colors={colors}
             style={styles.imageStyle}
           />
           <View>

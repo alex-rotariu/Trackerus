@@ -6,7 +6,6 @@ const screenWidth = Dimensions.get("window").width;
 
 export default UserInfoView = ({ props }) => {
   const { followers, following, trackCount } = props;
-  // console.log(followers, following, trackCount);
   return (
     <View style={styles.container}>
       <View style={styles.element}>
@@ -30,13 +29,10 @@ const styles = StyleSheet.create({
   text: { textAlign: "center" },
   container: {
     marginTop: screenHeight * 0.08,
-    // marginBottom: screenHeight * 0.025,
-    // flex: 1,
     flexDirection: "row",
     justifyContent: "space-around"
   },
   element: {
     width: screenWidth * 0.2
-    // marginHorizontal: screenHeight * 0.025
   }
 });

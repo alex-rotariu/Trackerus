@@ -18,7 +18,6 @@ export const uploadImage = (result) => async (dispatch) => {
     base64: result.base64,
     type: result.type
   });
-  // console.log("response", response.data);
 };
 
 export const signup = ({
@@ -39,7 +38,6 @@ export const signup = ({
       password,
       confirmPassword
     });
-    // console.log(response);
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: USER_SIGNUP_SUCCESS, payload: response.data });
     // navigate("Authenticated");

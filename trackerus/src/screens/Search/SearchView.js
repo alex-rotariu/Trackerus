@@ -47,7 +47,6 @@ const SearchView = ({
             buttonStyle={{
               width: screenWidth * 0.28,
               marginLeft: screenWidth * 0.2,
-              // marginRight: 10,
               backgroundColor: followed ? "#fff" : "#0E6E23",
               borderWidth: 1,
               borderColor: followed ? "#000" : "#fff"
@@ -71,7 +70,6 @@ const SearchView = ({
         }}
       />
       <SafeAreaView style={styles.trackList}>
-        {/* <Text style={{ fontSize: 16, textAlign: "center" }}>{user.fullName ? user.fullName : ""} tracks</Text> */}
         <SearchTracksList tracks={tracks} />
       </SafeAreaView>
     </View>
@@ -95,8 +93,6 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
   info: { fontSize: 24, color: "#696969", textAlign: "right" },
-  // body: { marginTop: 40 },
-  // bodyContent: { flex: 1, alignItems: "center", padding: 30 },
   header: {
     backgroundColor: "#85ED90",
     height: screenHeight * 0.15,
@@ -116,7 +112,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
-    // marginBottom: 50
   }
 });
 

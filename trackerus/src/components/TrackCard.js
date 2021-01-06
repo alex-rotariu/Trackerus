@@ -51,6 +51,7 @@ export default TrackCard = (props) => {
             ref={(ref) => {
               setMapRef(ref);
             }}
+            toolbarEnabled={false}
             loadingEnabled
             liteMode
             initialRegion={mapInitialRegion}
@@ -101,14 +102,12 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0
     },
-    // elevation: 3,
     backgroundColor: "#0000",
     alignItems: "center",
     justifyContent: "center"
   },
   container: {
     width: width * 0.9,
-    // height: height * 0.25,
     borderColor: "#0E6E23",
     borderLeftWidth: 10,
     backgroundColor: "#67CD75",
@@ -121,7 +120,6 @@ const styles = StyleSheet.create({
   mapContainer: {
     overflow: "hidden",
     borderRadius: 32,
-    // flex: 1,
     marginLeft: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -132,7 +130,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0
     }
-    // elevation: 3
   }
 });
 

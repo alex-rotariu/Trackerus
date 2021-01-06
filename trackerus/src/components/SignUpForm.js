@@ -28,10 +28,12 @@ const SignUpForm = ({ signup }) => {
   });
 
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <ScrollView
+        alwaysBounceVertical={true}
+        showsVerticalScrollIndicator={false}
         style={{
-          width: Dimensions.get("window").width * 0.7,
+          width: Dimensions.get("window").width * 0.8,
           height: Dimensions.get("window").height * 0.7
         }}
       >
@@ -142,7 +144,7 @@ const SignUpForm = ({ signup }) => {
           </Spacer>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-
+    marginVertical: Dimensions.get("window").height * 0.01,
     backgroundColor: "#2C8E3E",
     shadowColor: "#2AC062",
     shadowOpacity: 0.4,
@@ -167,23 +169,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   title: {
+    paddingVertical: Dimensions.get("window").height * 0.01,
     fontSize: 32,
     fontWeight: "bold",
-    textAlign: "center",
-    marginVertical: 10
+    textAlign: "center"
   },
   inputs: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center"
-    // marginBottom: Dimensions.get("window").height * 0.1
   },
   wrapper: {
     flex: 1,
     alignSelf: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-    borderRadius: 20,
-    padding: 20
+    borderRadius: 20
   },
   dateRow: {
     flex: 1,

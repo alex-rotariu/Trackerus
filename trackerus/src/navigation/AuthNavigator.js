@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   image: {
-    // opacity: 1,
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center"

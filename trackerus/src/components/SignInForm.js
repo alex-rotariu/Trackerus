@@ -19,8 +19,12 @@ const SignInForm = ({ signin }) => {
     password: ""
   });
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+    <View style={styles.wrapper}>
+      <ScrollView
+        alwaysBounceVertical={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollView}
+      >
         <View style={styles.inputs}>
           <Text style={styles.title}>Sign In</Text>
           <Input
@@ -51,7 +55,7 @@ const SignInForm = ({ signin }) => {
           </Spacer>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -76,10 +80,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   scrollView: {
-    width: Dimensions.get("window").width * 0.7,
-    height: Dimensions.get("window").height * 0.7
+    width: Dimensions.get("window").width * 0.8,
+    height: Dimensions.get("window").height * 0.5
   },
   title: {
+    paddingVertical: Dimensions.get("window").height * 0.01,
     fontSize: 32,
     fontWeight: "bold",
     textAlign: "center",
@@ -89,7 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center"
-    // marginBottom: Dimensions.get("window").height * 0.1
   },
   errorMessage: {
     fontSize: 16,
@@ -100,8 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-    borderRadius: 20,
-    padding: 20
+    borderRadius: 20
   }
 });
 

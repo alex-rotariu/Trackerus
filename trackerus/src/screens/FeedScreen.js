@@ -38,12 +38,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     justifyContent: "center"
-    // marginBottom: 50
   },
   trackList: {
-    // flex: 1
     paddingTop: screenHeight * 0.005
-    // marginBottom: screenHeight * 0.055
   }
 });
 
